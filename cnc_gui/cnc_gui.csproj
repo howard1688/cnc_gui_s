@@ -128,6 +128,7 @@
     <Compile Include="home.xaml.cs">
       <DependentUpon>home.xaml</DependentUpon>
     </Compile>
+    <Compile Include="logic.cs" />
     <Compile Include="menu_bar.xaml.cs">
       <DependentUpon>menu_bar.xaml</DependentUpon>
     </Compile>

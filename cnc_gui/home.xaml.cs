@@ -1,19 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Logic;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using LiveCharts;
-using LiveCharts.Wpf;
 
 
 namespace cnc_gui
@@ -29,13 +17,13 @@ namespace cnc_gui
             settingsPage = new setting();
             settingsPage.LoadConfig();
             InitializeComponent();
-            
+
             // 在初始化時，將 setting.xaml 中的靜態變數 CncIp 的值顯示在 TextBlock
             home_ip.Text = setting.Cncip;
             home_port.Text = setting.Cncport;
-            flusher_lv1_str.Text = setting.flusherlevel_st[0];      
+            flusher_lv1_str.Text = setting.flusherlevel_st[0];
             flusher_lv2_str.Text = setting.flusherlevel_st[1];
-            flusher_lv3_str.Text = setting.flusherlevel_st[2];      
+            flusher_lv3_str.Text = setting.flusherlevel_st[2];
             flusher_lv4_str.Text = setting.flusherlevel_st[3];
             flusher_lv5_str.Text = setting.flusherlevel_st[4];
 
@@ -56,20 +44,30 @@ namespace cnc_gui
             excluder_lv3_time.Text = setting.excluder_time[2];
             excluder_lv4_time.Text = setting.excluder_time[3];
             excluder_lv5_time.Text = setting.excluder_time[4];
+            /*
+            if (Logic.core.r == 0)
+            {
+                connect_light.Foreground = new SolidColorBrush(Colors.Green);
+            }
+            else
+            {
+                MessageBox.Show("連線成功");
+            }
+            */
         }
 
-        private void program_start_Checked(object sender, RoutedEventArgs e)
+        private async void program_start_Checked(object sender, RoutedEventArgs e)
         {
 
             MessageBox.Show("程式已啟動");
-                
-            
+            await core.Main(true);
+
         }
-        private void program_stop_Checked(object sender, RoutedEventArgs e)
+        private async void program_stop_Checked(object sender, RoutedEventArgs e)
         {
 
             MessageBox.Show("程式已停止");
-
+            await core.Main(false);
 
         }
     }
