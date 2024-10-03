@@ -1,18 +1,11 @@
 ﻿using System;
 using System.Diagnostics;  // Process 類所在命名空間
-using System.Net;
-using System.Reflection.Emit;
 using System.Runtime.InteropServices;
-using System.IO;
 using System.Threading;
 using System.Threading.Tasks; // Task 類所在命名空間
-using System.Timers;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Security.Cryptography;
-using static Logic.Focas1;
 
-namespace Logic {
+namespace Logic
+{
 
     public class core
     {
@@ -24,7 +17,7 @@ namespace Logic {
         static ushort FPort = 8193;
         // 初始化 Focas1 連接
         public static short r = Focas1.cnc_allclibhndl3(FAddress, FPort, 1, out FFlibHndl);
-        public static async Task Main(bool start) 
+        public static async Task Main(bool start)
 
         {
             var mc = new core();
@@ -92,7 +85,7 @@ namespace Logic {
             p.StartInfo.CreateNoWindow = true; // 不顯示控制台視窗
             p.Start();
         }
-        
+
         //讀取主軸負載
         public long GetData()
         {
@@ -111,7 +104,7 @@ namespace Logic {
             }
             return data;
         }
-        
+
         //10進制轉2進制陣列
         int[] ConvertToBinaryArray(int decimalNumber)
         {
@@ -122,7 +115,7 @@ namespace Logic {
             }
             return binaryarr;
         }
-        
+
         //2進制轉10進制
         int ConvertBinaryArrayToDecimal(int[] binaryArray)
         {
@@ -136,7 +129,7 @@ namespace Logic {
             }
             return decimalValue;
         }
-        
+
         //讀取十進制數值
         public long ReadByteParam(ushort datano_s, ushort datano_e)
         {
@@ -202,14 +195,14 @@ namespace Logic {
             if (c == 5)
             {
                 T = T * 1000;
-                OnTime = T *100;
+                OnTime = T * 100;
                 var task = Task.Delay(T);
                 WritePmcData(7000, 7000, 1);
                 Thread.Sleep(OnTime);
                 WritePmcData(7000, 7000, 1);
                 task.Wait();
             }
-            if (c >5 && c<11)
+            if (c > 5 && c < 11)
             {
                 T = T * 1000;
                 OnTime = T * 300;

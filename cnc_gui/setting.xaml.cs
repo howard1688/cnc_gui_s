@@ -5,7 +5,6 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Media;
 
 namespace cnc_gui
 {
@@ -29,8 +28,8 @@ namespace cnc_gui
             public string[] ExcluderTime { get; set; }
         }
 
-        private string configFilePath = "config.json"; // 存放設定的檔案路徑
-        private Config config; // 儲存設定的物件
+        public string configFilePath = "config.json"; // 存放設定的檔案路徑
+        public Config config; // 儲存設定的物件
 
 
         public static string Cncip { get; private set; } = "192.168.1.300"; // 預設 IP 地址
@@ -188,7 +187,7 @@ namespace cnc_gui
             */
         }
 
-        
+
 
 
 

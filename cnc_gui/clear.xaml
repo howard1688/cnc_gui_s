@@ -78,7 +78,19 @@
                     <TextBlock Text="n" FontSize="30" FontWeight="Bold" Margin="0,10,0,0" Height="35"/>
                     <TextBlock Text="筆積屑量級變化圖" FontSize="30" FontWeight="Bold" Margin="0,10,0,0" Height="35"/>
                 </StackPanel>
-                <lvc:CartesianChart Series="{Binding metal_debris_n_data}" Margin="0,20,0,0" Height="400" Width="550"/>
+                <lvc:CartesianChart Series="{Binding flusher_run_time}" Margin="0,0,0,0" Height="450" Width="570">
+                    <lvc:CartesianChart.AxisX>
+                        <lvc:Axis Title="時間" LabelFormatter="{Binding FirstChartFormatter}">
+                            <lvc:Axis.Separator>
+                                <lvc:Separator Step="1"  />
+                                <!-- 調整 Step 屬性 -->
+                            </lvc:Axis.Separator>
+                        </lvc:Axis>
+                    </lvc:CartesianChart.AxisX>
+                    <lvc:CartesianChart.AxisY>
+                        <lvc:Axis Title="平台積屑量"></lvc:Axis>
+                    </lvc:CartesianChart.AxisY>
+                </lvc:CartesianChart>
             </StackPanel>
         </Border>
 
@@ -88,7 +100,19 @@
                     <TextBlock Text="&#xe4bb;" FontSize="35" Margin="0,10,10,0" FontFamily="/font/Font Awesome 6 Free Solid.otf#Font Awesome 6 Free Solid"/>
                     <TextBlock Text="排屑機啟動量級折線圖" FontSize="30" FontWeight="Bold" Margin="0,10,0,0" Height="35"/>
                 </StackPanel>
-                <lvc:CartesianChart Series="{Binding metal_debris_excluder_run_level}" Margin="0,10,0,0" Height="170" Width="800"/>
+                <lvc:CartesianChart Series="{Binding excluder_run_time}" Margin="0,0,0,0" Height="190" Width="800">
+                    <lvc:CartesianChart.AxisX>
+                        <lvc:Axis Title="時間" LabelFormatter="{Binding SecondChartFormatter}">
+                            <lvc:Axis.Separator>
+                                <lvc:Separator Step="1"  />
+                                <!-- 調整 Step 屬性 -->
+                            </lvc:Axis.Separator>
+                        </lvc:Axis>
+                    </lvc:CartesianChart.AxisX>
+                    <lvc:CartesianChart.AxisY>
+                        <lvc:Axis Title="排屑機積屑量"></lvc:Axis>
+                    </lvc:CartesianChart.AxisY>
+                </lvc:CartesianChart>
             </StackPanel>
         </Border>
     </Grid>
