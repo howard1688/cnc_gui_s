@@ -60,14 +60,14 @@ namespace cnc_gui
         {
 
             MessageBox.Show("程式已啟動");
-            await core.Main(true);
+            //await core.Main(true);
 
         }
         private async void program_stop_Checked(object sender, RoutedEventArgs e)
         {
 
             MessageBox.Show("程式已停止");
-            await core.Main(false);
+            //await core.Main(false);
 
         }
     }

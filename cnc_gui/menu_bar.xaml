@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         xmlns:local="clr-namespace:cnc_gui"
         xmlns:fa="http://schemas.fontawesome.io/icons/"
-        Title="cnc鐵屑實時監控軟體" Height="800" Width="1280">
+        Title="AI視覺節能工具機應用" Height="800" Width="1280">
     <Grid>
         <Grid>
             <Grid.ColumnDefinitions>

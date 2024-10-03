@@ -53,7 +53,7 @@
                         </TextBox.Template>
                     </hc:TextBox>
                     <TextBlock Text="連線狀態 " FontSize="20" Height="22" />
-                    <TextBlock Text="&#xf111;" FontSize="25" Foreground="#B8161C" Margin="0,3,0,0" FontFamily="/font/Font Awesome 6 Free Solid.otf#Font Awesome 6 Free Solid"/>
+                    <TextBlock x:Name="connect_light" Text="&#xf111;" FontSize="25" Foreground="#B8161C" Margin="0,3,0,0" FontFamily="/font/Font Awesome 6 Free Solid.otf#Font Awesome 6 Free Solid"/>
                 </StackPanel>
             </StackPanel>
         </Border>

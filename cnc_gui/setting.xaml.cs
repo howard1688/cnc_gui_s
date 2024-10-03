@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace cnc_gui
 {
@@ -13,7 +14,7 @@ namespace cnc_gui
     /// </summary>
     public partial class setting : Page
     {
-        //json檔
+        //json檔變數宣告
         public class Config
         {
             public string Cncip { get; set; }
@@ -55,7 +56,7 @@ namespace cnc_gui
         MessageBoxResult result;
 
 
-
+        //讀取config.json
         public void LoadConfig()
         {
             // 如果設定檔不存在，就建立一個預設的 Config
@@ -94,6 +95,24 @@ namespace cnc_gui
                 excluder_time = config.ExcluderTime;
             }
         }
+
+        //儲存config
+        private void SaveConfig()
+        {
+            config.ExcluderLevels = excluderLevels; // 更新配置中的 excluderLevels
+            config.ExcluderLevelsl = excluderLevelsl;
+            config.ExcluderlevelSt = excluderlevel_st;
+            config.ExcluderTime = excluder_time;
+
+            config.FlusherLevels = flusherLevels;
+            config.FlusherLevelsl = flusherLevelsl;
+            config.FlusherlevelSt = flusherlevel_st;
+            config.FlusherTime = flusher_time;
+
+            string json = JsonConvert.SerializeObject(config, Formatting.Indented);
+            File.WriteAllText(configFilePath, json);
+        }
+
         //%樹轉換成string
         public static void GenerateLevels()
         {
@@ -157,24 +176,19 @@ namespace cnc_gui
             excluder_lev3_r.TextChanged += excluder_lev3_r_TextChanged;
             excluder_lev4_r.TextChanged += excluder_lev4_r_TextChanged;
             DataContext = this;
+            /*
+            if (Logic.core.r == 0)
+            {
+                connect_light.Foreground = new SolidColorBrush(Colors.Green);
+            }
+            else
+            {
+                connect_light.Foreground = new SolidColorBrush(Colors.Red);
+            }
+            */
         }
 
-        //saveconfig
-        private void SaveConfig()
-        {
-            config.ExcluderLevels = excluderLevels; // 更新配置中的 excluderLevels
-            config.ExcluderLevelsl = excluderLevelsl;
-            config.ExcluderlevelSt = excluderlevel_st;
-            config.ExcluderTime = excluder_time;
-
-            config.FlusherLevels = flusherLevels;
-            config.FlusherLevelsl = flusherLevelsl;
-            config.FlusherlevelSt = flusherlevel_st;
-            config.FlusherTime = flusher_time;
-
-            string json = JsonConvert.SerializeObject(config, Formatting.Indented);
-            File.WriteAllText(configFilePath, json);
-        }
+        
 
 
 
