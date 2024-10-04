@@ -6,6 +6,8 @@ using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using static Focas;
+using System.Windows.Threading;
 
 
 namespace cnc_gui
@@ -21,16 +23,23 @@ namespace cnc_gui
         private List<DateTime> _timestamps = new List<DateTime>(); // 
         private const int MaxDataPoints = 10;
 
+        private DispatcherTimer timer;
+
         public home()
         {
             settingsPage = new setting();
             settingsPage.LoadConfig();
+            settingsPage.SaveConfig();
             InitializeComponent();
 
             // 在初始化時，將 setting.xaml 中的靜態變數的值顯示在 TextBlock
 
             home_ip.Text = setting.Cncip;
             home_port.Text = setting.Cncport;
+
+            flusher_level_bar.Value = setting.Flusher_level_bar;
+            excluder_level_bar.Value = setting.Excluder_level_bar;
+
             flusher_lv1_str.Text = setting.flusherlevel_st[0];
             flusher_lv2_str.Text = setting.flusherlevel_st[1];
             flusher_lv3_str.Text = setting.flusherlevel_st[2];
@@ -55,14 +64,14 @@ namespace cnc_gui
             excluder_lv4_time.Text = setting.excluder_time[3];
             excluder_lv5_time.Text = setting.excluder_time[4];
 
-            /*是否連線成功
+            /*
             if (Logic.core.r == 0)
             {
                 connect_light.Foreground = new SolidColorBrush(Colors.Green);
             }
             else
             {
-                MessageBox.Show("連線成功");
+                connect_light.Foreground = new SolidColorBrush(Colors.Red);
             }
             */
 
@@ -89,7 +98,31 @@ namespace cnc_gui
             DataContext = this;
 
             Task.Run(UpdateChart);
+
+            UpdateProgressBars();
+
+            // 初始化並配置 DispatcherTimer
+            timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(10); // 設置為每 10 秒觸發一次
+            timer.Tick += Timer_Tick; // 每次觸發執行的事件
+            timer.Start();
         }
+
+
+        // 此方法用於載入設定並更新 UI
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            settingsPage.LoadConfig(); // 重新載入配置
+            UpdateProgressBars();      // 更新進度條
+        }
+
+        // 更新進度條的數值
+        private void UpdateProgressBars()
+        {
+            flusher_level_bar.Value = setting.Flusher_level_bar;
+            excluder_level_bar.Value = setting.Excluder_level_bar;
+        }
+
 
         public SeriesCollection energy_run_time { get; set; }
         public Func<double, string> Formatter { get; set; }
@@ -99,9 +132,13 @@ namespace cnc_gui
         {
             while (true)
             {
+
                 await Task.Delay(10000); // 每秒更新一次
+
+
+
                 var currentTime = DateTime.Now;
-                var newValue = _random.NextDouble() * 10; // 模擬新數據
+                var newValue =setting.Flusher_level_bar; // 模擬新數據
                 Application.Current.Dispatcher.Invoke(() =>
                 {
                     energy_run_time[0].Values.Add(newValue);
@@ -113,7 +150,6 @@ namespace cnc_gui
                         _timestamps.RemoveAt(0);
                     }
                 });
-
                 OnPropertyChanged(nameof(energy_run_time));
             }
         }

@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using LiveCharts;
+using LiveCharts.Wpf;
+using Newtonsoft.Json;
 using System;
 using System.IO;
 using System.Linq;
@@ -18,6 +20,8 @@ namespace cnc_gui
         {
             public string Cncip { get; set; }
             public string Cncport { get; set; }
+            public double Flusher_level_bar { get; set; }
+            public double Excluder_level_bar { get; set; }
             public string[] FlusherLevels { get; set; }
             public string[] FlusherLevelsl { get; set; }
             public string[] FlusherlevelSt { get; set; }
@@ -26,6 +30,10 @@ namespace cnc_gui
             public string[] ExcluderLevelsl { get; set; }
             public string[] ExcluderlevelSt { get; set; }
             public string[] ExcluderTime { get; set; }
+            public string Excluder_period { get; set; }
+            public string Image_processing_time { get; set; }
+            public string Total_flusher_time { get; set; }
+            public string Delay_time { get; set; }
         }
 
         public string configFilePath = "config.json"; // 存放設定的檔案路徑
@@ -33,20 +41,30 @@ namespace cnc_gui
 
 
         public static string Cncip { get; private set; } = "192.168.1.300"; // 預設 IP 地址
-        public static string Cncport { get; private set; } = "8192";
-        public string flusherPercentage { get; set; } = "選擇";
-        public string excluderPercentage { get; set; } = "選擇";
+        public static string Cncport { get; private set; } = "8192"; // 預設 Port 號
 
-        public static string[] flusherLevels { get; private set; } = { "20", "40", "60", "80" };
+        public static double Flusher_level_bar { get; private set; } = 0; //底座環沖積屑量級條狀圖
+        public static double Excluder_level_bar { get; private set; } = 0;//排屑機排屑量級條狀圖
+
+        public string flusherPercentage { get; set; } = "選擇"; //底座環沖運行規則選單
+        public string excluderPercentage { get; set; } = "選擇";//排屑機運行規則選單
+
+        public static string[] flusherLevels { get; private set; } = { "20", "40", "60", "80" };//底座環沖運行規則level(可供更改)
         public static string[] flusherLevelsl { get; private set; } = { "21", "41", "61", "81" };
-        public static string[] flusherlevel_st = { "0%~20%", "21%~40%", "41%~60%", "61%~80%", "81%~100%", "", "" };
-        public static string[] flusher_time = { "0", "10", "20", "30", "40" };
+        public static string[] flusherlevel_st = { "0%~20%", "21%~40%", "41%~60%", "61%~80%", "81%~100%", "", "" };//用於字串顯示底座環沖量級
+        public static string[] flusher_time = { "0", "10", "20", "30", "40" };//底座環沖運行時間
 
-        public static string[] excluderLevels { get; private set; } = { "20", "40", "60", "80" };
+        public static string[] excluderLevels { get; private set; } = { "20", "40", "60", "80" };//排屑機運行規則level(可供更改)
         public static string[] excluderLevelsl { get; private set; } = { "21", "41", "61", "81" };
-        public static string[] excluderlevel_st = { "0%~20%", "21%~40%", "41%~60%", "61%~80%", "81%~100%", "", "" };
-        public static string[] excluder_time = { "0", "10", "20", "30", "40" };
+        public static string[] excluderlevel_st = { "0%~20%", "21%~40%", "41%~60%", "61%~80%", "81%~100%", "", "" };//用於字串顯示排屑機量級
+        public static string[] excluder_time = { "0", "10", "20", "30", "40" };//排屑機運行時間
+        public static string excluder_period = "10";//排屑機運行週期(由N個底座環沖時間段組成)
 
+        public static string Image_processing_time { get; private set; } = "10";//影像處理時間
+        public static string Total_flusher_time { get; private set; } = "10";//底座環沖總時間
+        public static string Delay_time { get; private set; } = "10";//延遲時間
+
+        public SeriesCollection pie_Flusher_time_total { get; set; } // 用於顯示圓餅圖的集合
         //警告並跳出messagebox系統
         public string messageboxtext = "test";
         public string caption = "警告";
@@ -65,6 +83,12 @@ namespace cnc_gui
                 {
                     Cncip = "192.168.1.300",
                     Cncport = "8192",
+                    Excluder_period = "10",
+                    Image_processing_time = "10",
+                    Total_flusher_time = "10",
+                    Delay_time = "10",
+                    Flusher_level_bar = 0,
+                    Excluder_level_bar = 0,
                     FlusherLevels = new[] { "20", "40", "60", "80" },
                     FlusherLevelsl = new[] { "21", "41", "61", "81" },
                     FlusherlevelSt = new[] { "0%~20%", "21%~40%", "41%~60%", "61%~80%", "81%~100%", "", "" },
@@ -73,6 +97,8 @@ namespace cnc_gui
                     ExcluderLevelsl = new[] { "21", "41", "61", "81" },
                     ExcluderlevelSt = new[] { "0%~20%", "21%~40%", "41%~60%", "61%~80%", "81%~100%", "", "" },
                     ExcluderTime = new[] { "0", "10", "20", "30", "40" }
+
+
                 };
 
                 SaveConfig(); // 預設儲存設定檔
@@ -83,6 +109,9 @@ namespace cnc_gui
                 string json = File.ReadAllText(configFilePath);
                 config = JsonConvert.DeserializeObject<Config>(json);
 
+                Flusher_level_bar = config.Flusher_level_bar;
+                Excluder_level_bar = config.Excluder_level_bar;
+
                 flusherLevels = config.FlusherLevels;
                 flusherLevelsl = config.FlusherLevelsl;
                 flusherlevel_st = config.FlusherlevelSt;
@@ -92,11 +121,16 @@ namespace cnc_gui
                 excluderLevelsl = config.ExcluderLevelsl;
                 excluderlevel_st = config.ExcluderlevelSt;
                 excluder_time = config.ExcluderTime;
+                excluder_period = config.Excluder_period;
+
+                Image_processing_time = config.Image_processing_time;
+                Total_flusher_time = config.Total_flusher_time;
+                Delay_time = config.Delay_time;
             }
         }
 
         //儲存config
-        private void SaveConfig()
+        public void SaveConfig()
         {
             config.ExcluderLevels = excluderLevels; // 更新配置中的 excluderLevels
             config.ExcluderLevelsl = excluderLevelsl;
@@ -107,6 +141,14 @@ namespace cnc_gui
             config.FlusherLevelsl = flusherLevelsl;
             config.FlusherlevelSt = flusherlevel_st;
             config.FlusherTime = flusher_time;
+
+            config.Flusher_level_bar = Flusher_level_bar;
+            config.Excluder_level_bar = Excluder_level_bar;
+
+            config.Excluder_period = excluder_period;
+            config.Image_processing_time = Image_processing_time;
+            config.Total_flusher_time = Total_flusher_time;
+            config.Delay_time = Delay_time;
 
             string json = JsonConvert.SerializeObject(config, Formatting.Indented);
             File.WriteAllText(configFilePath, json);
@@ -135,11 +177,17 @@ namespace cnc_gui
         }
         public setting()
         {
+            SetPieChartData(Image_processing_time, Total_flusher_time, Delay_time);
             InitializeComponent();
             LoadConfig();
             // 初始化時，將靜態變數值顯示在 TextBox 上
             setting_ip.Text = config.Cncip;
             setting_port.Text = config.Cncport;
+
+            excluder_period_st.Text = excluder_period;
+            image_processing_time.Text = Image_processing_time;
+            total_flusher_time.Text = Total_flusher_time;
+            delay_time.Text = Delay_time;
 
             flusher_lev1_r.Text = flusherLevels[0];
             flusher_lev2_r.Text = flusherLevels[1];
@@ -165,6 +213,14 @@ namespace cnc_gui
             setting_ip.TextChanged += Setting_ip_TextChanged;
             setting_port.TextChanged += Setting_port_TextChanged;
 
+            flusher_time_st.TextChanged += flusher_time_st_TextChanged;
+            excluder_time_st.TextChanged += excluder_time_st_TextChanged;
+
+            excluder_period_st.TextChanged += excluder_period_st_TextChanged;
+            total_flusher_time.TextChanged += total_flusher_time_TextChanged;
+            image_processing_time.TextChanged += image_processing_time_TextChanged;
+            delay_time.TextChanged += delay_time_TextChanged;
+
             flusher_lev1_r.TextChanged += flusher_lev1_r_TextChanged;
             flusher_lev2_r.TextChanged += flusher_lev2_r_TextChanged;
             flusher_lev3_r.TextChanged += flusher_lev3_r_TextChanged;
@@ -174,6 +230,11 @@ namespace cnc_gui
             excluder_lev2_r.TextChanged += excluder_lev2_r_TextChanged;
             excluder_lev3_r.TextChanged += excluder_lev3_r_TextChanged;
             excluder_lev4_r.TextChanged += excluder_lev4_r_TextChanged;
+
+            total_work_time.Text = (int.Parse(Image_processing_time) + int.Parse(Total_flusher_time) + int.Parse(Delay_time)).ToString();
+
+                
+
             DataContext = this;
             /*
             if (Logic.core.r == 0)
@@ -187,9 +248,34 @@ namespace cnc_gui
             */
         }
 
+        public void SetPieChartData(string imageProcessingTime, string totalFlusherTime, string delayTime)
+        {
+            // 直接將 string 轉換為 double 並設置到圓餅圖
+            pie_Flusher_time_total = new SeriesCollection
+            {
+                new PieSeries
+                {
+                    Title = "Image processing time",
+                    Values = new ChartValues<double> { double.Parse(imageProcessingTime) }, // 使用 double.Parse() 轉換數據
+                    DataLabels = true
+                },
+                new PieSeries
+                {
+                    Title = "Total flusher time",
+                    Values = new ChartValues<double> { double.Parse(totalFlusherTime) }, // 使用 double.Parse() 轉換數據
+                    DataLabels = true
+                },
+                new PieSeries
+                {
+                    Title = "Delay time",
+                    Values = new ChartValues<double> { double.Parse(delayTime) }, // 使用 double.Parse() 轉換數據
+                    DataLabels = true
+                }
+            };
 
-
-
+            // 更新數據綁定
+            DataContext = this;
+        }
 
         //ip 更新
         private void Setting_ip_TextChanged(object sender, TextChangedEventArgs e)
@@ -550,6 +636,98 @@ namespace cnc_gui
 
         }
 
+        private void excluder_period_st_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            excluder_period = excluder_period_st.Text.ToString();
+        }
 
+        private void excluder_period_st_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                int i = 0;
+                // 按下 Enter 鍵時修改數值
+                if (int.TryParse(excluder_period, out i))//防呆 只能輸入int
+                {
+                    excluder_period = i.ToString();
+                    config.Excluder_period = excluder_period;
+                    SaveConfig();
+                }
+                else
+                {
+                    MessageBox.Show("請輸入整數", "警告", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+            }   
+        }
+        private void image_processing_time_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Image_processing_time = image_processing_time.Text.ToString();
+        }
+        private void image_processing_time_KeyDown(object sender, KeyEventArgs e)
+        {
+           if(e.Key == Key.Enter)
+            {
+                int i = 0;
+                // 按下 Enter 鍵時修改數值
+                if (int.TryParse(Image_processing_time, out i))//防呆 只能輸入int
+                {
+                    Image_processing_time = i.ToString();
+                    config.Image_processing_time = Image_processing_time;
+                    SaveConfig();
+                    total_work_time.Text = (int.Parse(Image_processing_time) + int.Parse(Total_flusher_time) + int.Parse(Delay_time)).ToString();
+                    SetPieChartData(Image_processing_time, Total_flusher_time, Delay_time);
+                }
+                else
+                {
+                    MessageBox.Show("請輸入整數", "警告", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+            }
+        }
+
+        private void total_flusher_time_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Total_flusher_time = total_flusher_time.Text.ToString();
+        }
+        private void total_flusher_time_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                if (int.TryParse(Total_flusher_time, out int i))//防呆 只能輸入int
+                {
+                    Total_flusher_time = i.ToString();
+                    config.Total_flusher_time = Total_flusher_time;
+                    SaveConfig();
+                    total_work_time.Text = (int.Parse(Image_processing_time) + int.Parse(Total_flusher_time) + int.Parse(Delay_time)).ToString();
+                    SetPieChartData(Image_processing_time, Total_flusher_time, Delay_time);
+                }
+                else
+                {
+                    MessageBox.Show("請輸入整數", "警告", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+            }
+        }
+
+        private void delay_time_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Delay_time = delay_time.Text.ToString();
+        }
+        private void delay_time_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Enter)
+            {
+                if (int.TryParse(Delay_time, out int i))//防呆 只能輸入int
+                {
+                    Delay_time = i.ToString();
+                    config.Delay_time = Delay_time;
+                    SaveConfig();
+                    total_work_time.Text = (int.Parse(Image_processing_time) + int.Parse(Total_flusher_time) + int.Parse(Delay_time)).ToString();
+                    SetPieChartData(Image_processing_time, Total_flusher_time, Delay_time);
+                }
+                else
+                {
+                    MessageBox.Show("請輸入整數", "警告", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+            }
+        }
     }
 }

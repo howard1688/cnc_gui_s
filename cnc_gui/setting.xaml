@@ -136,7 +136,7 @@
                 <TextBlock Text="排屑機啟動週期" FontSize="30" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10,0,0"/>
                 <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
                     <TextBlock Text="每" FontSize="20" Height="24"/>
-                    <hc:TextBox x:Name="excluder_period" Width="70" Height=" 30" FontSize="20" VerticalContentAlignment="Center"  Text=" " BorderThickness="0" Padding="0" Background="Black" Margin="30,0,10,0">
+                    <hc:TextBox x:Name="excluder_period_st" Width="70" Height=" 30" FontSize="20" VerticalContentAlignment="Center"  Text=" " BorderThickness="0" Padding="0" Background="Black" Margin="30,0,10,0" TextChanged="excluder_period_st_TextChanged">
                         <TextBox.Template>
                             <ControlTemplate TargetType="TextBox">
                                 <Border Background="#c0c0c0" BorderBrush="Black" BorderThickness="1" CornerRadius="4">
@@ -156,7 +156,58 @@
             <TextBlock Text="環沖與排屑機I/O控制設定" FontSize="30" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10,0,0"/>
         </Border>
         <Border Width="735" Height="260" CornerRadius="30" Margin="340,224,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="White" Grid.RowSpan="4" Grid.ColumnSpan="3">
-            <TextBlock Text="底座環沖執行時間設定" FontSize="30" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+            <StackPanel Margin="0,10,0,0">
+                <TextBlock Text="底座環沖執行時間設定" FontSize="30" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                <StackPanel Orientation="Horizontal">
+                    <lvc:PieChart Series="{Binding pie_Flusher_time_total}" Margin="20,0,0,0" Height="200" Width="200"/>
+                    <StackPanel Margin="100,0,0,0">
+                        <StackPanel Orientation="Horizontal" Margin="0,30,0,0">
+                            <TextBlock Text="影像擷取與計算時間" FontSize="20"/>
+                            <hc:TextBox x:Name="image_processing_time" Width="70" Height=" 30" FontSize="20" VerticalContentAlignment="Center" Background="Black" Margin="10,0,0,0" TextChanged="image_processing_time_TextChanged" KeyDown="image_processing_time_KeyDown">
+                                <TextBox.Template>
+                                    <ControlTemplate TargetType="TextBox">
+                                        <Border Background="#c0c0c0" BorderBrush="Black" BorderThickness="1" CornerRadius="4">
+                                            <ScrollViewer x:Name="PART_ContentHost"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </TextBox.Template>
+                            </hc:TextBox>
+                            <TextBlock Text="秒" FontSize="20" Margin="10,0,0,0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                            <TextBlock Text="可沖水總時間            " FontSize="20"/>
+                            <hc:TextBox x:Name="total_flusher_time" Width="70" Height=" 30" FontSize="20" VerticalContentAlignment="Center" Background="Black" Margin="10,0,0,0" TextChanged="total_flusher_time_TextChanged" KeyDown="total_flusher_time_KeyDown">
+                                <TextBox.Template>
+                                    <ControlTemplate TargetType="TextBox">
+                                        <Border Background="#c0c0c0" BorderBrush="Black" BorderThickness="1" CornerRadius="4">
+                                            <ScrollViewer x:Name="PART_ContentHost"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </TextBox.Template>
+                            </hc:TextBox>
+                            <TextBlock Text="秒" FontSize="20" Margin="10,0,0,0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                            <TextBlock Text="保留時間時間            " FontSize="20"/>
+                            <hc:TextBox x:Name="delay_time" Width="70" Height=" 30" FontSize="20" VerticalContentAlignment="Center" Background="Black" Margin="10,0,0,0" TextChanged="delay_time_TextChanged" KeyDown="delay_time_KeyDown">
+                                <TextBox.Template>
+                                    <ControlTemplate TargetType="TextBox">
+                                        <Border Background="#c0c0c0" BorderBrush="Black" BorderThickness="1" CornerRadius="4">
+                                            <ScrollViewer x:Name="PART_ContentHost"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </TextBox.Template>
+                            </hc:TextBox>
+                            <TextBlock Text="秒" FontSize="20" Margin="10,0,0,0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                            <TextBlock Text="總運行時間                  " FontSize="20"/>
+                            <TextBlock x:Name="total_work_time" Text="0" FontSize="20" Width="70"/>
+                            <TextBlock Text="秒" FontSize="20" Margin="10,0,0,0"/>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
         </Border>
         <Border Width="362" Height="257" CornerRadius="30" Margin="340,495,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="White" Grid.RowSpan="6" Grid.ColumnSpan="2">
             <StackPanel HorizontalAlignment="Center" >

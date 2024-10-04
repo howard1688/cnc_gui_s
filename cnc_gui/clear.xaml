@@ -25,7 +25,7 @@
         <Border Width="440" Height="170" CornerRadius="30" Margin="10,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="White" Grid.RowSpan="1" Grid.ColumnSpan="2">
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0">
                 <TextBlock Text="當前排屑機啟動狀態" FontSize="30" FontWeight="Bold" Height="35" HorizontalAlignment="Center"/>
-                <ProgressBar x:Name="metal_debris_excluder_level_bar" Value="0" Margin="0,20,0,0" Height="40" Width="380"/>
+                <ProgressBar x:Name="excluder_level_bar" Value="0" Margin="0,20,0,0" Height="40" Width="380"/>
                 <StackPanel Orientation="Horizontal">
                         <TextBlock Text="排屑機量級 level." FontSize="20" FontWeight="Bold" Margin="0,20,0,0" Height="35"/>
                         <TextBlock Text="x" FontSize="20" FontWeight="Bold" Margin="0,20,0,0" Height="35"/>
