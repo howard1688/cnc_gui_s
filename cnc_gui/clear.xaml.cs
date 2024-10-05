@@ -120,6 +120,7 @@ namespace cnc_gui
                     }
                 });
 
+                
                 OnPropertyChanged(nameof(flusher_run_time));
             }
         }

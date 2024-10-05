@@ -136,7 +136,7 @@
                 <TextBlock Text="排屑機啟動週期" FontSize="30" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10,0,0"/>
                 <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
                     <TextBlock Text="每" FontSize="20" Height="24"/>
-                    <hc:TextBox x:Name="excluder_period_st" Width="70" Height=" 30" FontSize="20" VerticalContentAlignment="Center"  Text=" " BorderThickness="0" Padding="0" Background="Black" Margin="30,0,10,0" TextChanged="excluder_period_st_TextChanged">
+                    <hc:TextBox x:Name="excluder_period_st" Width="70" Height=" 30" FontSize="20" VerticalContentAlignment="Center"  Text=" " BorderThickness="0" Padding="0" Background="Black" Margin="30,0,10,0" TextChanged="excluder_period_st_TextChanged" KeyDown="excluder_period_st_KeyDown">
                         <TextBox.Template>
                             <ControlTemplate TargetType="TextBox">
                                 <Border Background="#c0c0c0" BorderBrush="Black" BorderThickness="1" CornerRadius="4">
@@ -159,9 +159,10 @@
             <StackPanel Margin="0,10,0,0">
                 <TextBlock Text="底座環沖執行時間設定" FontSize="30" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10,0,0"/>
                 <StackPanel Orientation="Horizontal">
-                    <lvc:PieChart Series="{Binding pie_Flusher_time_total}" Margin="20,0,0,0" Height="200" Width="200"/>
+                    <lvc:PieChart Series="{Binding pie_Flusher_time_total}" Margin="20,0,0,0" Height="180" Width="200" />
                     <StackPanel Margin="100,0,0,0">
                         <StackPanel Orientation="Horizontal" Margin="0,30,0,0">
+                            <TextBlock  Text="&#xf111;" FontSize="22" Foreground="#42A5F4" Margin="0,0,5,0" FontFamily="/font/Font Awesome 6 Free Solid.otf#Font Awesome 6 Free Solid" Height="25"/>
                             <TextBlock Text="影像擷取與計算時間" FontSize="20"/>
                             <hc:TextBox x:Name="image_processing_time" Width="70" Height=" 30" FontSize="20" VerticalContentAlignment="Center" Background="Black" Margin="10,0,0,0" TextChanged="image_processing_time_TextChanged" KeyDown="image_processing_time_KeyDown">
                                 <TextBox.Template>
@@ -175,6 +176,7 @@
                             <TextBlock Text="秒" FontSize="20" Margin="10,0,0,0"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                            <TextBlock  Text="&#xf111;" FontSize="22" Foreground="#F55F54" Margin="0,0,5,0" FontFamily="/font/Font Awesome 6 Free Solid.otf#Font Awesome 6 Free Solid" Height="25"/>
                             <TextBlock Text="可沖水總時間            " FontSize="20"/>
                             <hc:TextBox x:Name="total_flusher_time" Width="70" Height=" 30" FontSize="20" VerticalContentAlignment="Center" Background="Black" Margin="10,0,0,0" TextChanged="total_flusher_time_TextChanged" KeyDown="total_flusher_time_KeyDown">
                                 <TextBox.Template>
@@ -188,6 +190,7 @@
                             <TextBlock Text="秒" FontSize="20" Margin="10,0,0,0"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                            <TextBlock  Text="&#xf111;" FontSize="22" Foreground="#F1C92C" Margin="0,0,5,0" FontFamily="/font/Font Awesome 6 Free Solid.otf#Font Awesome 6 Free Solid" Height="25"/>
                             <TextBlock Text="保留時間時間            " FontSize="20"/>
                             <hc:TextBox x:Name="delay_time" Width="70" Height=" 30" FontSize="20" VerticalContentAlignment="Center" Background="Black" Margin="10,0,0,0" TextChanged="delay_time_TextChanged" KeyDown="delay_time_KeyDown">
                                 <TextBox.Template>
@@ -201,9 +204,9 @@
                             <TextBlock Text="秒" FontSize="20" Margin="10,0,0,0"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-                            <TextBlock Text="總運行時間                  " FontSize="20"/>
+                            <TextBlock Text="總運行時間                         " FontSize="20"/>
                             <TextBlock x:Name="total_work_time" Text="0" FontSize="20" Width="70"/>
-                            <TextBlock Text="秒" FontSize="20" Margin="10,0,0,0"/>
+                            <TextBlock Text="秒" FontSize="20" Margin="2,0,0,0"/>
                         </StackPanel>
                     </StackPanel>
                 </StackPanel>

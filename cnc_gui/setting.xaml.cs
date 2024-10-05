@@ -2,6 +2,8 @@
 using LiveCharts.Wpf;
 using Newtonsoft.Json;
 using System;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Windows;
@@ -37,7 +39,7 @@ namespace cnc_gui
         }
 
         public string configFilePath = "config.json"; // 存放設定的檔案路徑
-        public Config config; // 儲存設定的物件
+        public Config config { get; set; } // 儲存設定的物件
 
 
         public static string Cncip { get; private set; } = "192.168.1.300"; // 預設 IP 地址
@@ -64,7 +66,16 @@ namespace cnc_gui
         public static string Total_flusher_time { get; private set; } = "10";//底座環沖總時間
         public static string Delay_time { get; private set; } = "10";//延遲時間
 
-        public SeriesCollection pie_Flusher_time_total { get; set; } // 用於顯示圓餅圖的集合
+        private SeriesCollection _pie_Flusher_time_total;
+        public SeriesCollection pie_Flusher_time_total
+        {
+            get => _pie_Flusher_time_total;
+            set
+            {
+                _pie_Flusher_time_total = value;
+                OnPropertyChanged(nameof(pie_Flusher_time_total)); // 通知 WPF 刷新 UI
+            }
+        }
         //警告並跳出messagebox系統
         public string messageboxtext = "test";
         public string caption = "警告";
@@ -154,6 +165,7 @@ namespace cnc_gui
             File.WriteAllText(configFilePath, json);
         }
 
+
         //%樹轉換成string
         public static void GenerateLevels()
         {
@@ -177,7 +189,6 @@ namespace cnc_gui
         }
         public setting()
         {
-            SetPieChartData(Image_processing_time, Total_flusher_time, Delay_time);
             InitializeComponent();
             LoadConfig();
             // 初始化時，將靜態變數值顯示在 TextBox 上
@@ -185,6 +196,7 @@ namespace cnc_gui
             setting_port.Text = config.Cncport;
 
             excluder_period_st.Text = excluder_period;
+
             image_processing_time.Text = Image_processing_time;
             total_flusher_time.Text = Total_flusher_time;
             delay_time.Text = Delay_time;
@@ -232,10 +244,33 @@ namespace cnc_gui
             excluder_lev4_r.TextChanged += excluder_lev4_r_TextChanged;
 
             total_work_time.Text = (int.Parse(Image_processing_time) + int.Parse(Total_flusher_time) + int.Parse(Delay_time)).ToString();
-
-                
-
+            pie_Flusher_time_total = new SeriesCollection
+            {
+                new PieSeries
+                {
+                    Title = "Image processing time",
+                    Values = new ChartValues<int> { int.Parse(config.Image_processing_time) },
+                    DataLabels = true,
+                    LabelPoint = chartPoint => string.Format("{0} ({1:P})", chartPoint.Y, chartPoint.Participation)
+                },
+                new PieSeries
+                {
+                    Title = "Total flusher time",
+                    Values = new ChartValues < int > { int.Parse(config.Total_flusher_time) },
+                    DataLabels = true,
+                    LabelPoint = chartPoint => string.Format("{0} ({1:P})", chartPoint.Y, chartPoint.Participation)
+                },
+                new PieSeries
+                {
+                    Title = "Delay time",
+                    Values = new ChartValues<int> { int.Parse(config.Delay_time) },
+                    DataLabels = true,
+                    LabelPoint = chartPoint => string.Format("{0} ({1:P})", chartPoint.Y, chartPoint.Participation)
+                }
+            };
             DataContext = this;
+            // 初始化 PieSeries 並加入數據
+
             /*
             if (Logic.core.r == 0)
             {
@@ -248,34 +283,34 @@ namespace cnc_gui
             */
         }
 
-        public void SetPieChartData(string imageProcessingTime, string totalFlusherTime, string delayTime)
+        private void UpdatePieChart()
         {
-            // 直接將 string 轉換為 double 並設置到圓餅圖
-            pie_Flusher_time_total = new SeriesCollection
+            pie_Flusher_time_total.Clear();
+            pie_Flusher_time_total.Add(new PieSeries
             {
-                new PieSeries
-                {
-                    Title = "Image processing time",
-                    Values = new ChartValues<double> { double.Parse(imageProcessingTime) }, // 使用 double.Parse() 轉換數據
-                    DataLabels = true
-                },
-                new PieSeries
-                {
-                    Title = "Total flusher time",
-                    Values = new ChartValues<double> { double.Parse(totalFlusherTime) }, // 使用 double.Parse() 轉換數據
-                    DataLabels = true
-                },
-                new PieSeries
-                {
-                    Title = "Delay time",
-                    Values = new ChartValues<double> { double.Parse(delayTime) }, // 使用 double.Parse() 轉換數據
-                    DataLabels = true
-                }
-            };
+                Title = "Image Processing Time",
+                Values = new ChartValues<int> { int.Parse(Image_processing_time) },
+                DataLabels = true,
+                LabelPoint = chartPoint => string.Format("{0} ({1:P})", chartPoint.Y, chartPoint.Participation)
+            });
+            pie_Flusher_time_total.Add(new PieSeries
+            {
+                Title = "Total Flusher Time",
+                Values = new ChartValues<int> { int.Parse(Total_flusher_time) },
+                DataLabels = true,
+                LabelPoint = chartPoint => string.Format("{0} ({1:P})", chartPoint.Y, chartPoint.Participation)
+            });
+            pie_Flusher_time_total.Add(new PieSeries
+            {
+                Title = "Delay Time",
+                Values = new ChartValues<int> { int.Parse(Delay_time) },
+                DataLabels = true,
+                LabelPoint = chartPoint => string.Format("{0} ({1:P})", chartPoint.Y, chartPoint.Participation)
+            });
 
-            // 更新數據綁定
-            DataContext = this;
+            OnPropertyChanged(nameof(pie_Flusher_time_total));
         }
+
 
         //ip 更新
         private void Setting_ip_TextChanged(object sender, TextChangedEventArgs e)
@@ -396,6 +431,7 @@ namespace cnc_gui
             }
         }
 
+     
 
         private void flusher_InitializeRadioButtons()
         {
@@ -657,7 +693,7 @@ namespace cnc_gui
                 {
                     MessageBox.Show("請輸入整數", "警告", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
-            }   
+            }
         }
         private void image_processing_time_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -665,7 +701,7 @@ namespace cnc_gui
         }
         private void image_processing_time_KeyDown(object sender, KeyEventArgs e)
         {
-           if(e.Key == Key.Enter)
+            if (e.Key == Key.Enter)
             {
                 int i = 0;
                 // 按下 Enter 鍵時修改數值
@@ -675,7 +711,7 @@ namespace cnc_gui
                     config.Image_processing_time = Image_processing_time;
                     SaveConfig();
                     total_work_time.Text = (int.Parse(Image_processing_time) + int.Parse(Total_flusher_time) + int.Parse(Delay_time)).ToString();
-                    SetPieChartData(Image_processing_time, Total_flusher_time, Delay_time);
+                    UpdatePieChart();
                 }
                 else
                 {
@@ -698,7 +734,7 @@ namespace cnc_gui
                     config.Total_flusher_time = Total_flusher_time;
                     SaveConfig();
                     total_work_time.Text = (int.Parse(Image_processing_time) + int.Parse(Total_flusher_time) + int.Parse(Delay_time)).ToString();
-                    SetPieChartData(Image_processing_time, Total_flusher_time, Delay_time);
+                    UpdatePieChart();
                 }
                 else
                 {
@@ -713,7 +749,7 @@ namespace cnc_gui
         }
         private void delay_time_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.Key == Key.Enter)
+            if (e.Key == Key.Enter)
             {
                 if (int.TryParse(Delay_time, out int i))//防呆 只能輸入int
                 {
@@ -721,13 +757,21 @@ namespace cnc_gui
                     config.Delay_time = Delay_time;
                     SaveConfig();
                     total_work_time.Text = (int.Parse(Image_processing_time) + int.Parse(Total_flusher_time) + int.Parse(Delay_time)).ToString();
-                    SetPieChartData(Image_processing_time, Total_flusher_time, Delay_time);
+                    UpdatePieChart();
+
                 }
                 else
                 {
                     MessageBox.Show("請輸入整數", "警告", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged(string name)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
     }
 }
