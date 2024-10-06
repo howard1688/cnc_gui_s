@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using static Focas;
+using Logic;
 using System.Windows.Threading;
 
 
@@ -121,6 +122,11 @@ namespace cnc_gui
         {
             flusher_level_bar.Value = setting.Flusher_level_bar;
             excluder_level_bar.Value = setting.Excluder_level_bar;
+            flusher_level_home.Text = setting.Flusher_level_bar.ToString();
+            excluder_level_home.Text = setting.Excluder_level_bar.ToString();
+            spindle_load_bar.Value = setting.Spindle_load;
+            spindle_load_home.Text = setting.Spindle_load.ToString();
+
         }
 
 
@@ -138,7 +144,7 @@ namespace cnc_gui
 
 
                 var currentTime = DateTime.Now;
-                var newValue =setting.Flusher_level_bar; // 模擬新數據
+                var newValue = _random.NextDouble() * 10; // 模擬新數據 //setting.Flusher_level_bar
                 Application.Current.Dispatcher.Invoke(() =>
                 {
                     energy_run_time[0].Values.Add(newValue);
@@ -163,14 +169,14 @@ namespace cnc_gui
         {
 
             MessageBox.Show("程式已啟動");
-            //await core.Main(true);
+            await core.Main(true);
 
         }
         private async void program_stop_Checked(object sender, RoutedEventArgs e)
         {
 
             MessageBox.Show("程式已停止");
-            //await core.Main(false);
+            await core.Main(false);
 
         }
     }

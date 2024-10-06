@@ -24,6 +24,7 @@ namespace cnc_gui
             public string Cncport { get; set; }
             public double Flusher_level_bar { get; set; }
             public double Excluder_level_bar { get; set; }
+            public long spindle_load { get; set; }
             public string[] FlusherLevels { get; set; }
             public string[] FlusherLevelsl { get; set; }
             public string[] FlusherlevelSt { get; set; }
@@ -47,7 +48,7 @@ namespace cnc_gui
 
         public static double Flusher_level_bar { get; private set; } = 0; //底座環沖積屑量級條狀圖
         public static double Excluder_level_bar { get; private set; } = 0;//排屑機排屑量級條狀圖
-
+        public static long Spindle_load { get; private set; } = 0; //主軸負載
         public string flusherPercentage { get; set; } = "選擇"; //底座環沖運行規則選單
         public string excluderPercentage { get; set; } = "選擇";//排屑機運行規則選單
 
@@ -98,6 +99,7 @@ namespace cnc_gui
                     Image_processing_time = "10",
                     Total_flusher_time = "10",
                     Delay_time = "10",
+                    spindle_load = 0,
                     Flusher_level_bar = 0,
                     Excluder_level_bar = 0,
                     FlusherLevels = new[] { "20", "40", "60", "80" },
@@ -109,7 +111,6 @@ namespace cnc_gui
                     ExcluderlevelSt = new[] { "0%~20%", "21%~40%", "41%~60%", "61%~80%", "81%~100%", "", "" },
                     ExcluderTime = new[] { "0", "10", "20", "30", "40" }
 
-
                 };
 
                 SaveConfig(); // 預設儲存設定檔
@@ -120,9 +121,10 @@ namespace cnc_gui
                 string json = File.ReadAllText(configFilePath);
                 config = JsonConvert.DeserializeObject<Config>(json);
 
+
                 Flusher_level_bar = config.Flusher_level_bar;
                 Excluder_level_bar = config.Excluder_level_bar;
-
+                Spindle_load = config.spindle_load;
                 flusherLevels = config.FlusherLevels;
                 flusherLevelsl = config.FlusherLevelsl;
                 flusherlevel_st = config.FlusherlevelSt;
@@ -155,7 +157,7 @@ namespace cnc_gui
 
             config.Flusher_level_bar = Flusher_level_bar;
             config.Excluder_level_bar = Excluder_level_bar;
-
+            config.spindle_load = Spindle_load;
             config.Excluder_period = excluder_period;
             config.Image_processing_time = Image_processing_time;
             config.Total_flusher_time = Total_flusher_time;

@@ -75,22 +75,22 @@
                     <TextBlock Text="工作狀態" FontSize="30" FontWeight="Bold" HorizontalAlignment="Center"/>
                     <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
                         <TextBlock Text="積屑量級" FontSize="20" FontWeight="Bold" HorizontalAlignment="Left"/>
-                        <TextBlock Text="xxx" FontSize="20" FontWeight="Bold" HorizontalAlignment="Left" Margin="200,0,0,0"/>
+                        <TextBlock Name="flusher_level_home" Text="xxx" FontSize="20" FontWeight="Bold" HorizontalAlignment="Left" Margin="200,0,0,0"/>
                         <TextBlock Text="%" FontSize="20" FontWeight="Bold" HorizontalAlignment="Left"/>
                     </StackPanel>
                     <ProgressBar x:Name="flusher_level_bar" Value="21" Height="30" Width="330"/>
                     <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
                         <TextBlock Text="排屑機量級" FontSize="20" FontWeight="Bold" HorizontalAlignment="Left"/>
-                        <TextBlock Text="xxx" FontSize="20" FontWeight="Bold" HorizontalAlignment="Left" Margin="180,0,0,0"/>
+                        <TextBlock Name="excluder_level_home" Text="xxx" FontSize="20" FontWeight="Bold" HorizontalAlignment="Left" Margin="180,0,0,0"/>
                         <TextBlock Text="%" FontSize="20" FontWeight="Bold" HorizontalAlignment="Left"/>
                     </StackPanel>
                     <ProgressBar x:Name="excluder_level_bar" Value="0" Height="30" Width="330"/>
                     <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
                         <TextBlock Text="主軸附載" FontSize="20" FontWeight="Bold" HorizontalAlignment="Left"/>
-                        <TextBlock Text="xxx" FontSize="20" FontWeight="Bold" HorizontalAlignment="Left" Margin="200,0,0,0"/>
+                        <TextBlock x:Name="spindle_load_home" Text="xxx" FontSize="20" FontWeight="Bold" HorizontalAlignment="Left" Margin="200,0,0,0"/>
                         <TextBlock Text="%" FontSize="20" FontWeight="Bold" HorizontalAlignment="Left"/>
                     </StackPanel>
-                    <ProgressBar x:Name="spindle_load" Value="0" Height="30" Width="330"/>
+                    <ProgressBar x:Name="spindle_load_bar" Value="0" Height="30" Width="330"/>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,15,0,0">
                         <TextBlock Text="底座環沖 " FontSize="20" FontWeight="Bold" />
                         <TextBlock Text="&#xf111;" FontSize="25" Foreground="#B8161C" Margin="0,0,0,0" FontFamily="/font/Font Awesome 6 Free Solid.otf#Font Awesome 6 Free Solid"/>

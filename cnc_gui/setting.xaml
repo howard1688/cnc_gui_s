@@ -191,7 +191,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
                             <TextBlock  Text="&#xf111;" FontSize="22" Foreground="#F1C92C" Margin="0,0,5,0" FontFamily="/font/Font Awesome 6 Free Solid.otf#Font Awesome 6 Free Solid" Height="25"/>
-                            <TextBlock Text="保留時間時間            " FontSize="20"/>
+                            <TextBlock Text="保留時間                    " FontSize="20"/>
                             <hc:TextBox x:Name="delay_time" Width="70" Height=" 30" FontSize="20" VerticalContentAlignment="Center" Background="Black" Margin="10,0,0,0" TextChanged="delay_time_TextChanged" KeyDown="delay_time_KeyDown">
                                 <TextBox.Template>
                                     <ControlTemplate TargetType="TextBox">
