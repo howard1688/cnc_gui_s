@@ -3,9 +3,12 @@ using LiveCharts.Wpf;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Threading;
+using static Focas;
 
 namespace cnc_gui
 {
@@ -14,13 +17,19 @@ namespace cnc_gui
     /// </summary>
     public partial class clear : Page
     {
+        private setting settingsPage;
         private Random _random = new Random();
         private const int MaxDataPoints = 10;
         private List<DateTime> _firstChartTimestamps = new List<DateTime>();
         private List<DateTime> _secondChartTimestamps = new List<DateTime>();
 
+        private DispatcherTimer timer;
+
         public clear()
         {
+            settingsPage = new setting();
+            settingsPage.LoadConfig();
+            settingsPage.SaveConfig();
             InitializeComponent();
             excluder_lv1_str.Text = setting.excluderlevel_st[0];
             excluder_lv2_str.Text = setting.excluderlevel_st[1];
@@ -90,6 +99,27 @@ namespace cnc_gui
 
             Task.Run(UpdateFirstChart);
             Task.Run(UpdateSecondChart);
+
+            UpdateProgressBars();
+
+            // 初始化並配置 DispatcherTimer
+            timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(10); // 設置為每 10 秒觸發一次
+            timer.Tick += Timer_Tick; // 每次觸發執行的事件
+            timer.Start();
+
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            settingsPage.LoadConfig(); // 重新載入配置
+            UpdateProgressBars();      // 更新進度條
+        }
+
+        private void UpdateProgressBars()
+        {
+            excluder_level_bar.Value = setting.Excluder_level_bar;
+            excluder_level_clear.Text = setting.Excluder_level_bar.ToString();
 
         }
 

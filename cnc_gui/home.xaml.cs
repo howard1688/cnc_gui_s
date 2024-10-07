@@ -38,7 +38,7 @@ namespace cnc_gui
             home_ip.Text = setting.Cncip;
             home_port.Text = setting.Cncport;
 
-            flusher_level_bar.Value = setting.Flusher_level_bar;
+            flusher_level_bar.Value = setting.flusher_level_bar;
             excluder_level_bar.Value = setting.Excluder_level_bar;
 
             flusher_lv1_str.Text = setting.flusherlevel_st[0];
@@ -107,6 +107,7 @@ namespace cnc_gui
             timer.Interval = TimeSpan.FromSeconds(10); // 設置為每 10 秒觸發一次
             timer.Tick += Timer_Tick; // 每次觸發執行的事件
             timer.Start();
+            Task.Run(UpdateChart);
         }
 
 
@@ -120,9 +121,9 @@ namespace cnc_gui
         // 更新進度條的數值
         private void UpdateProgressBars()
         {
-            flusher_level_bar.Value = setting.Flusher_level_bar;
+            flusher_level_bar.Value = setting.flusher_level_bar;
             excluder_level_bar.Value = setting.Excluder_level_bar;
-            flusher_level_home.Text = setting.Flusher_level_bar.ToString();
+            flusher_level_home.Text = setting.flusher_level_bar.ToString();
             excluder_level_home.Text = setting.Excluder_level_bar.ToString();
             spindle_load_bar.Value = setting.Spindle_load;
             spindle_load_home.Text = setting.Spindle_load.ToString();
@@ -140,9 +141,6 @@ namespace cnc_gui
             {
 
                 await Task.Delay(10000); // 每秒更新一次
-
-
-
                 var currentTime = DateTime.Now;
                 var newValue = _random.NextDouble() * 10; // 模擬新數據 //setting.Flusher_level_bar
                 Application.Current.Dispatcher.Invoke(() =>

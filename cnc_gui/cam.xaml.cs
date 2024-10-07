@@ -6,6 +6,9 @@ using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using static Focas;
+using System.Windows.Threading;
+using System.Configuration;
 
 namespace cnc_gui
 {
@@ -15,13 +18,21 @@ namespace cnc_gui
     public partial class cam : Page
     {
 
+        private setting settingsPage;
+
         private Random _random = new Random();
         private List<DateTime> _timestamps = new List<DateTime>(); // 
         private const int MaxDataPoints = 10;
 
+        private DispatcherTimer timer;
+
         public cam()
         {
+            settingsPage = new setting();
+            settingsPage.LoadConfig();
+            settingsPage.SaveConfig();
             InitializeComponent();
+
             flusher_lv1_str.Text = setting.flusherlevel_st[0];
             flusher_lv2_str.Text = setting.flusherlevel_st[1];
             flusher_lv3_str.Text = setting.flusherlevel_st[2];
@@ -54,8 +65,30 @@ namespace cnc_gui
             };
 
             DataContext = this;
-
             Task.Run(UpdateChart);
+
+            UpdateProgressBars();
+
+            // 初始化並配置 DispatcherTimer
+            timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(10); // 設置為每 10 秒觸發一次
+            timer.Tick += Timer_Tick; // 每次觸發執行的事件
+            timer.Start();
+            Task.Run(UpdateChart);
+        }
+
+        // 此方法用於載入設定並更新 UI
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            settingsPage.LoadConfig(); // 重新載入配置
+            UpdateProgressBars();      // 更新進度條
+        }
+
+        private void UpdateProgressBars()
+        {
+            flusher_level_bar.Value = setting.flusher_level_bar;
+            flusher_level_cam.Text = setting.flusher_level_bar.ToString();
+
         }
 
         public SeriesCollection flusher_run_time { get; set; }

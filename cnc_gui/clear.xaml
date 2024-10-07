@@ -30,7 +30,7 @@
                         <TextBlock Text="排屑機量級 level." FontSize="20" FontWeight="Bold" Margin="0,20,0,0" Height="35"/>
                         <TextBlock Text="x" FontSize="20" FontWeight="Bold" Margin="0,20,0,0" Height="35"/>
                         <TextBlock Text="運轉頻率" FontSize="20" FontWeight="Bold" Margin="100,20,0,0" Height="35"/>
-                        <TextBlock Text="x" FontSize="20" FontWeight="Bold" Margin="0,20,0,0" Height="35"/>
+                        <TextBlock x:Name="excluder_level_clear" Text="x" FontSize="20" FontWeight="Bold" Margin="0,20,0,0" Height="35"/>
                 </StackPanel>
             </StackPanel>
         </Border>

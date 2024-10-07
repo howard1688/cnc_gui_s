@@ -9,6 +9,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using static cnc_gui.setting;
 
 namespace cnc_gui
 {
@@ -24,6 +25,12 @@ namespace cnc_gui
             public string Cncport { get; set; }
             public double Flusher_level_bar { get; set; }
             public double Excluder_level_bar { get; set; }
+            public string Flusher_address { get; set; }
+            public string Excluder_address { get; set; }
+            public string Flusher_address_decimal { get; set; }
+            public string Excluder_address_decimal { get; set; }
+            public string Flusher_address_handl { get; set; }
+            public string Excluder_address_handl { get; set; }
             public long spindle_load { get; set; }
             public string[] FlusherLevels { get; set; }
             public string[] FlusherLevelsl { get; set; }
@@ -46,7 +53,15 @@ namespace cnc_gui
         public static string Cncip { get; private set; } = "192.168.1.300"; // 預設 IP 地址
         public static string Cncport { get; private set; } = "8192"; // 預設 Port 號
 
-        public static double Flusher_level_bar { get; private set; } = 0; //底座環沖積屑量級條狀圖
+        public static string flusher_address { get; set; } = "7000"; //底座環沖地址
+        public static string excluder_address { get; set; } = "7000";//排屑機地址
+        public static string flusher_address_handl { get; set; } = "0"; //底座環沖手動運行
+        public static string excluder_address_handl { get; set; } = "0";//排屑機手動運行
+        public static string flusher_binary { get; set; } = ""; //底座環沖二元數
+        public static string excluder_binary { get; set; } = "";//排屑機二元數
+        public static string flusher_address_decimal { get; private set; } = "0"; //底座環沖地址小數點
+        public static string excluder_address_decimal { get; private set; } = "0";//排屑機地址小數點
+        public static double flusher_level_bar { get; private set; } = 0; //底座環沖積屑量級條狀圖
         public static double Excluder_level_bar { get; private set; } = 0;//排屑機排屑量級條狀圖
         public static long Spindle_load { get; private set; } = 0; //主軸負載
         public string flusherPercentage { get; set; } = "選擇"; //底座環沖運行規則選單
@@ -100,6 +115,12 @@ namespace cnc_gui
                     Total_flusher_time = "10",
                     Delay_time = "10",
                     spindle_load = 0,
+                    Flusher_address = "7000",
+                    Excluder_address = "7000",
+                    Flusher_address_handl = "0",
+                    Excluder_address_handl = "0",
+                    Flusher_address_decimal = "0",
+                    Excluder_address_decimal = "0",
                     Flusher_level_bar = 0,
                     Excluder_level_bar = 0,
                     FlusherLevels = new[] { "20", "40", "60", "80" },
@@ -110,6 +131,7 @@ namespace cnc_gui
                     ExcluderLevelsl = new[] { "21", "41", "61", "81" },
                     ExcluderlevelSt = new[] { "0%~20%", "21%~40%", "41%~60%", "61%~80%", "81%~100%", "", "" },
                     ExcluderTime = new[] { "0", "10", "20", "30", "40" }
+
 
                 };
 
@@ -122,7 +144,7 @@ namespace cnc_gui
                 config = JsonConvert.DeserializeObject<Config>(json);
 
 
-                Flusher_level_bar = config.Flusher_level_bar;
+                flusher_level_bar = config.Flusher_level_bar;
                 Excluder_level_bar = config.Excluder_level_bar;
                 Spindle_load = config.spindle_load;
                 flusherLevels = config.FlusherLevels;
@@ -139,6 +161,13 @@ namespace cnc_gui
                 Image_processing_time = config.Image_processing_time;
                 Total_flusher_time = config.Total_flusher_time;
                 Delay_time = config.Delay_time;
+                flusher_address_decimal = config.Flusher_address_decimal;
+                excluder_address_decimal = config.Excluder_address_decimal;
+                flusher_address = config.Flusher_address;
+                excluder_address = config.Excluder_address;
+                flusher_address_handl = config.Flusher_address_handl;
+                excluder_address_handl = config.Excluder_address_handl;
+
             }
         }
 
@@ -155,13 +184,14 @@ namespace cnc_gui
             config.FlusherlevelSt = flusherlevel_st;
             config.FlusherTime = flusher_time;
 
-            config.Flusher_level_bar = Flusher_level_bar;
+            config.Flusher_level_bar = flusher_level_bar;
             config.Excluder_level_bar = Excluder_level_bar;
             config.spindle_load = Spindle_load;
             config.Excluder_period = excluder_period;
             config.Image_processing_time = Image_processing_time;
             config.Total_flusher_time = Total_flusher_time;
             config.Delay_time = Delay_time;
+
 
             string json = JsonConvert.SerializeObject(config, Formatting.Indented);
             File.WriteAllText(configFilePath, json);
@@ -244,6 +274,8 @@ namespace cnc_gui
             excluder_lev2_r.TextChanged += excluder_lev2_r_TextChanged;
             excluder_lev3_r.TextChanged += excluder_lev3_r_TextChanged;
             excluder_lev4_r.TextChanged += excluder_lev4_r_TextChanged;
+            
+
 
             total_work_time.Text = (int.Parse(Image_processing_time) + int.Parse(Total_flusher_time) + int.Parse(Delay_time)).ToString();
             pie_Flusher_time_total = new SeriesCollection
@@ -769,11 +801,92 @@ namespace cnc_gui
             }
         }
 
+        //10進制轉2進制陣列
+        int[] flusher_ConvertToBinaryArray(int decimalNumber)
+        {
+            int[] binaryarr = new int[8];
+            for (int i = 7; i >= 0; i--)
+            {
+                binaryarr[i] = decimalNumber % 2;
+                decimalNumber /= 2;
+                flusher_binary = binaryarr[i].ToString() + flusher_binary;
+            }
+            flusher_binary = string.Join("", binaryarr);
+            return binaryarr;
+        }
+        int[] excluder_ConvertToBinaryArray(int decimalNumber)
+        {
+            int[] binaryarr = new int[8];
+            excluder_binary = "";
+            for (int i = 7; i >= 0; i--)
+            {
+                binaryarr[i] = decimalNumber % 2;
+                decimalNumber /= 2;
+                
+                excluder_binary = binaryarr[i].ToString() + excluder_binary;
+            }
+            flusher_binary = string.Join("", binaryarr);
+            return binaryarr;
+        }
+
+        //2進制轉10進制
+        int flusher_ConvertBinaryArrayToDecimal(int[] binaryArray)
+        {
+            int decimalValue = 0;
+            int length = binaryArray.Length;
+            for (int i = 0; i < length; i++)
+            {
+                decimalValue += binaryArray[i] * (int)Math.Pow(2, binaryArray.Length - 1 - i);
+            }
+            return decimalValue;
+        }
+        int excluder_ConvertBinaryArrayToDecimal(int[] binaryArray)
+        {
+            int decimalValue = 0;
+            int length = binaryArray.Length;
+            for (int i = 0; i < length; i++)
+            {
+                decimalValue += binaryArray[i] * (int)Math.Pow(2, binaryArray.Length - 1 - i);
+            }
+            return decimalValue;
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected void OnPropertyChanged(string name)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+
+        private void address_load_Click(object sender, RoutedEventArgs e)
+        {
+            LoadConfig();
+            int[] flusher_binaryArray = flusher_ConvertToBinaryArray(int.Parse(config.Flusher_address_decimal));
+            int[] excluder_binaryArray = excluder_ConvertToBinaryArray(int.Parse(config.Excluder_address_decimal));
+            int flusher_modifiedDecimalValue = flusher_ConvertBinaryArrayToDecimal(flusher_binaryArray);
+            int excluder_modifiedDecimalValue = excluder_ConvertBinaryArrayToDecimal(excluder_binaryArray);
+            flusher_address_binary_st.Text = flusher_binary;
+            excluder_address_binary_st.Text = excluder_binary;
+            flusher_address_decimal_st.Text = flusher_address_decimal;
+            excluder_address_decimal_st.Text = excluder_address_decimal;
+            flusher_adress_st.Text = flusher_address;
+            excluder_adress_st.Text = excluder_address;
+            flusher_adress_handl_st.Text = flusher_address_handl;
+            excluder_adress_handl_st.Text = excluder_address_handl;
+            
+        }
+
+        private void address_save_Click(object sender, RoutedEventArgs e)
+        {
+            int[] flusher_binaryArray = flusher_address_binary_st.Text.ToString().Select(c => int.Parse(c.ToString())).ToArray();
+            int[] excluder_binaryArray = excluder_address_binary_st.Text.ToString().Select(c => int.Parse(c.ToString())).ToArray();
+            int flusher_modifiedDecimalValue = flusher_ConvertBinaryArrayToDecimal(flusher_binaryArray);
+            int excluder_modifiedDecimalValue = excluder_ConvertBinaryArrayToDecimal(excluder_binaryArray);
+            config.Flusher_address_decimal = flusher_modifiedDecimalValue.ToString();
+            config.Excluder_address_decimal = excluder_modifiedDecimalValue.ToString();
+            SaveConfig();
+            flusher_address_decimal_st.Text = config.Flusher_address_decimal;
+            excluder_address_decimal_st.Text = config.Excluder_address_decimal;
         }
     }
 }
