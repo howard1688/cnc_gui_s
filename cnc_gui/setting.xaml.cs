@@ -869,24 +869,36 @@ namespace cnc_gui
             excluder_address_binary_st.Text = excluder_binary;
             flusher_address_decimal_st.Text = flusher_address_decimal;
             excluder_address_decimal_st.Text = excluder_address_decimal;
-            flusher_adress_st.Text = flusher_address;
-            excluder_adress_st.Text = excluder_address;
-            flusher_adress_handl_st.Text = flusher_address_handl;
-            excluder_adress_handl_st.Text = excluder_address_handl;
+            flusher_address_st.Text = flusher_address;
+            excluder_address_st.Text = excluder_address;
+            flusher_address_handl_st.Text = flusher_address_handl;
+            excluder_address_handl_st.Text = excluder_address_handl;
             
         }
 
         private void address_save_Click(object sender, RoutedEventArgs e)
         {
-            int[] flusher_binaryArray = flusher_address_binary_st.Text.ToString().Select(c => int.Parse(c.ToString())).ToArray();
-            int[] excluder_binaryArray = excluder_address_binary_st.Text.ToString().Select(c => int.Parse(c.ToString())).ToArray();
-            int flusher_modifiedDecimalValue = flusher_ConvertBinaryArrayToDecimal(flusher_binaryArray);
-            int excluder_modifiedDecimalValue = excluder_ConvertBinaryArrayToDecimal(excluder_binaryArray);
-            config.Flusher_address_decimal = flusher_modifiedDecimalValue.ToString();
-            config.Excluder_address_decimal = excluder_modifiedDecimalValue.ToString();
-            SaveConfig();
-            flusher_address_decimal_st.Text = config.Flusher_address_decimal;
-            excluder_address_decimal_st.Text = config.Excluder_address_decimal;
+            if (flusher_address_binary_st.Text != "" && excluder_address_binary_st.Text != "")
+            {
+                int[] flusher_binaryArray = flusher_address_binary_st.Text.ToString().Select(c => int.Parse(c.ToString())).ToArray();
+                int[] excluder_binaryArray = excluder_address_binary_st.Text.ToString().Select(c => int.Parse(c.ToString())).ToArray();
+                int flusher_modifiedDecimalValue = flusher_ConvertBinaryArrayToDecimal(flusher_binaryArray);
+                int excluder_modifiedDecimalValue = excluder_ConvertBinaryArrayToDecimal(excluder_binaryArray);
+                config.Flusher_address_decimal = flusher_modifiedDecimalValue.ToString();
+                config.Excluder_address_decimal = excluder_modifiedDecimalValue.ToString();
+                config.Flusher_address_handl = flusher_address_handl_st.Text;
+                config.Excluder_address_handl = excluder_address_handl_st.Text;
+                config.Flusher_address = flusher_address_st.Text;
+                config.Excluder_address = excluder_address_st.Text;
+                SaveConfig();
+                MessageBox.Show("寫入成功", "成功", MessageBoxButton.OK, MessageBoxImage.Information);
+                flusher_address_decimal_st.Text = config.Flusher_address_decimal;
+                excluder_address_decimal_st.Text = config.Excluder_address_decimal;
+            }
+            else
+            {
+                MessageBox.Show("請先在寫入之前按下讀取按鈕", "警告", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
     }
 }

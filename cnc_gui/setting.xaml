@@ -163,7 +163,7 @@
                 <StackPanel Margin="15,15,0,0">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="底座環沖" FontSize="20" Margin="0,5,0,0"/>
-                        <hc:TextBox x:Name="flusher_adress_handl_st"  Width="22" Height="35" FontSize="20" Text=" " BorderThickness="0" Padding="0" Background="Black" Margin="35,0,0,0" TextChanged="excluder_period_st_TextChanged" KeyDown="excluder_period_st_KeyDown">
+                        <hc:TextBox x:Name="flusher_address_handl_st"  Width="22" Height="35" FontSize="20" Text=" " BorderThickness="0" Padding="0" Background="Black" Margin="35,0,0,0" TextChanged="excluder_period_st_TextChanged" KeyDown="excluder_period_st_KeyDown">
                             <TextBox.Template>
                                 <ControlTemplate TargetType="TextBox">
                                     <Border Background="#c0c0c0" BorderBrush="Black" BorderThickness="1" CornerRadius="4">
@@ -172,7 +172,7 @@
                                 </ControlTemplate>
                             </TextBox.Template>
                         </hc:TextBox>
-                        <hc:TextBox x:Name="flusher_adress_st" Width="100" Height="35" FontSize="20" Text=" " BorderThickness="0" Padding="0" Background="Black" Margin="10,0,0,0" TextChanged="excluder_period_st_TextChanged" KeyDown="excluder_period_st_KeyDown">
+                        <hc:TextBox x:Name="flusher_address_st" Width="100" Height="35" FontSize="20" Text=" " BorderThickness="0" Padding="0" Background="Black" Margin="10,0,0,0" TextChanged="excluder_period_st_TextChanged" KeyDown="excluder_period_st_KeyDown">
                             <TextBox.Template>
                                 <ControlTemplate TargetType="TextBox">
                                     <Border Background="#c0c0c0" BorderBrush="Black" BorderThickness="1" CornerRadius="4">
@@ -204,7 +204,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="15,15,0,0">
                     <TextBlock Text="  排屑機  " FontSize="20" Margin="0,5,0,0"/>
-                    <hc:TextBox x:Name="excluder_adress_handl_st" Width="22" Height="35" FontSize="20" Text=" " BorderThickness="0" Padding="0" Background="Black" Margin="35,0,0,0" TextChanged="excluder_period_st_TextChanged" KeyDown="excluder_period_st_KeyDown">
+                    <hc:TextBox x:Name="excluder_address_handl_st" Width="22" Height="35" FontSize="20" Text=" " BorderThickness="0" Padding="0" Background="Black" Margin="35,0,0,0" TextChanged="excluder_period_st_TextChanged" KeyDown="excluder_period_st_KeyDown">
                         <TextBox.Template>
                             <ControlTemplate TargetType="TextBox">
                                 <Border Background="#c0c0c0" BorderBrush="Black" BorderThickness="1" CornerRadius="4">
@@ -213,7 +213,7 @@
                             </ControlTemplate>
                         </TextBox.Template>
                     </hc:TextBox>
-                    <hc:TextBox x:Name="excluder_adress_st" Width="100" Height="35" FontSize="20" Text=" " BorderThickness="0" Padding="0" Background="Black" Margin="10,0,0,0" TextChanged="excluder_period_st_TextChanged" KeyDown="excluder_period_st_KeyDown">
+                    <hc:TextBox x:Name="excluder_address_st" Width="100" Height="35" FontSize="20" Text=" " BorderThickness="0" Padding="0" Background="Black" Margin="10,0,0,0" TextChanged="excluder_period_st_TextChanged" KeyDown="excluder_period_st_KeyDown">
                         <TextBox.Template>
                             <ControlTemplate TargetType="TextBox">
                                 <Border Background="#c0c0c0" BorderBrush="Black" BorderThickness="1" CornerRadius="4">
