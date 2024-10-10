@@ -1,6 +1,7 @@
 ﻿using LiveCharts;
 using LiveCharts.Wpf;
 using System;
+using System.IO;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Threading.Tasks;
@@ -9,6 +10,7 @@ using System.Windows.Controls;
 using static Focas;
 using Logic;
 using System.Windows.Threading;
+using System.Windows.Media.Imaging;
 
 
 namespace cnc_gui
@@ -100,8 +102,6 @@ namespace cnc_gui
 
             Task.Run(UpdateChart);
 
-            UpdateProgressBars();
-
             // 初始化並配置 DispatcherTimer
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(10); // 設置為每 10 秒觸發一次
@@ -110,24 +110,88 @@ namespace cnc_gui
             Task.Run(UpdateChart);
         }
 
+        public void LoadImage(string imagePath)
+        {
+            try
+            {
+                // 建立 BitmapImage 物件
+                BitmapImage bitmap = new BitmapImage();
+
+                // 開始初始化
+                bitmap.BeginInit();
+
+                // 設定圖片來源
+                bitmap.UriSource = new Uri(imagePath, UriKind.Absolute);
+
+                // 防止圖片被鎖定，允許快取選項
+                bitmap.CacheOption = BitmapCacheOption.OnLoad;
+
+                // 結束初始化
+                bitmap.EndInit();
+
+                // 將圖片設定到 Image 控制項
+                source_img_home.Source = bitmap;
+            }
+            catch (Exception ex)
+            {
+                // 如果發生錯誤，顯示預設圖片
+                source_img_home.Source = new BitmapImage(new Uri("icon/no_img.png", UriKind.Relative));
+                // 你也可以選擇記錄錯誤訊息
+                Console.WriteLine(ex.Message);
+            }
+        }
 
         // 此方法用於載入設定並更新 UI
         private void Timer_Tick(object sender, EventArgs e)
         {
             settingsPage.LoadConfig(); // 重新載入配置
-            UpdateProgressBars();      // 更新進度條
+            UpdatehomeProgressBars();      // 更新進度條
         }
 
         // 更新進度條的數值
-        private void UpdateProgressBars()
+        public void UpdatehomeProgressBars()
         {
-            flusher_level_bar.Value = setting.flusher_level_bar;
-            excluder_level_bar.Value = setting.Excluder_level_bar;
+            switch (setting.flusher_level_bar)
+            {
+                case 1:
+                    flusher_level_bar.Value = double.Parse(setting.flusherLevels[0]);
+                    break;
+                case 2:
+                    flusher_level_bar.Value = double.Parse(setting.flusherLevels[1]);
+                    break;
+                case 3:
+                    flusher_level_bar.Value = double.Parse(setting.flusherLevels[2]);
+                    break;
+                case 4:
+                    flusher_level_bar.Value = double.Parse(setting.flusherLevels[3]);
+                    break;
+                case 5:
+                    flusher_level_bar.Value = setting.Excluder_level_bar * 20;
+                    break;
+            }
+            switch (setting.Excluder_level_bar)
+            {
+                case 1:
+                    excluder_level_bar.Value = double.Parse(setting.excluderLevels[0]);
+                    break;
+                case 2:
+                    excluder_level_bar.Value = double.Parse(setting.excluderLevels[1]);
+                    break;
+                case 3:
+                    excluder_level_bar.Value = double.Parse(setting.excluderLevels[2]);
+                    break;
+                case 4:
+                    excluder_level_bar.Value = double.Parse(setting.excluderLevels[3]);
+                    break;
+                case 5:
+                    excluder_level_bar.Value = setting.Excluder_level_bar * 20;
+                    break;
+            }
             flusher_level_home.Text = setting.flusher_level_bar.ToString();
             excluder_level_home.Text = setting.Excluder_level_bar.ToString();
             spindle_load_bar.Value = setting.Spindle_load;
             spindle_load_home.Text = setting.Spindle_load.ToString();
-
+            LoadImage(@"D:\code\cnc_gui_s\cnc_gui\image\image_home.png");
         }
 
 

@@ -28,9 +28,10 @@
                 <ProgressBar x:Name="excluder_level_bar" Value="0" Margin="0,20,0,0" Height="40" Width="380"/>
                 <StackPanel Orientation="Horizontal">
                         <TextBlock Text="排屑機量級 level." FontSize="20" FontWeight="Bold" Margin="0,20,0,0" Height="35"/>
-                        <TextBlock Text="x" FontSize="20" FontWeight="Bold" Margin="0,20,0,0" Height="35"/>
-                        <TextBlock Text="運轉頻率" FontSize="20" FontWeight="Bold" Margin="100,20,0,0" Height="35"/>
                         <TextBlock x:Name="excluder_level_clear" Text="x" FontSize="20" FontWeight="Bold" Margin="0,20,0,0" Height="35"/>
+                        <TextBlock Text="運轉頻率" FontSize="20" FontWeight="Bold" Margin="100,20,0,0" Height="35"/>
+                        <TextBlock x:Name="excluder_level_time" Text="x" FontSize="20" FontWeight="Bold" Margin="0,20,0,0" Height="35"/>
+                        <TextBlock Text="s" FontSize="20" FontWeight="Bold" Margin="5,20,0,0" Height="35"/>
                 </StackPanel>
             </StackPanel>
         </Border>
@@ -38,7 +39,17 @@
         <Border Width="440" Height="320" CornerRadius="30" Margin="10,190,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="White" Grid.RowSpan="2" Grid.ColumnSpan="2">
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0">
                 <TextBlock Text="排屑機啟動週期" FontSize="30" FontWeight="Bold" Height="35" HorizontalAlignment="Center"/>
-                <TextBlock Text="排屑機量級    時間" FontSize="20" FontWeight="Bold" Height="35"/>
+                <StackPanel Orientation="Horizontal" Margin="0,30,0,0">
+                    <TextBlock Text="每" FontSize="25" FontWeight="Bold" Height="35"/>
+                    <TextBlock x:Name="excluder_cycle_time" Text="10" FontSize="25" FontWeight="Bold" Height="35"/>
+                    <TextBlock Text="筆積屑結果啟動一次排屑機" FontSize="25" FontWeight="Bold" Height="35"/>
+                </StackPanel>
+                <TextBlock Text="&#xe4bb;" FontSize="100" HorizontalAlignment="Center" Margin="0,10,10,0" FontFamily="/font/Font Awesome 6 Free Solid.otf#Font Awesome 6 Free Solid"/>
+                <StackPanel Orientation="Horizontal" Margin="0,20,0,0" HorizontalAlignment="Center">
+                    <TextBlock x:Name="excluder_cycle_times" Text="10" FontSize="25" FontWeight="Bold" Height="35"/>
+                    <TextBlock Text="筆積屑量量級加總結果" FontSize="25" FontWeight="Bold" Height="35"/>
+                    <TextBlock x:Name="excluder_cycle_total" Text="0" FontSize="25" FontWeight="Bold" Height="35" Margin="10,0,0,0"/>
+                </StackPanel>
 
             </StackPanel>
         </Border>

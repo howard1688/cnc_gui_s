@@ -23,7 +23,7 @@
             </Grid.RowDefinitions>
             <Border Width="685" Height="450" CornerRadius="30" Margin="10,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="White" Grid.RowSpan="2" Grid.ColumnSpan="1">
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0">
-                    <Image x:Name="source_img_home" Source="icon/no_img.png" Height="390" Width="502" Margin="0,10,0,0"/>
+                    <Image x:Name="source_img_home"  Height="390" Width="502" Margin="0,10,0,0"/>
                     <TextBlock Text="平台積屑影像" FontSize="30" FontWeight="Bold" Height="35" HorizontalAlignment="Center" />
                 </StackPanel>
             </Border>
@@ -75,14 +75,15 @@
                     <TextBlock Text="工作狀態" FontSize="30" FontWeight="Bold" HorizontalAlignment="Center"/>
                     <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
                         <TextBlock Text="積屑量級" FontSize="20" FontWeight="Bold" HorizontalAlignment="Left"/>
-                        <TextBlock Name="flusher_level_home" Text="xxx" FontSize="20" FontWeight="Bold" HorizontalAlignment="Left" Margin="200,0,0,0"/>
-                        <TextBlock Text="%" FontSize="20" FontWeight="Bold" HorizontalAlignment="Left"/>
+                        <TextBlock Text="level." FontSize="20" FontWeight="Bold" HorizontalAlignment="Left" Margin="190,0,0,0"/>
+                        <TextBlock Name="flusher_level_home" Text="x" FontSize="20" FontWeight="Bold" HorizontalAlignment="Left" />
+                       
                     </StackPanel>
                     <ProgressBar x:Name="flusher_level_bar" Value="21" Height="30" Width="330"/>
                     <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
                         <TextBlock Text="排屑機量級" FontSize="20" FontWeight="Bold" HorizontalAlignment="Left"/>
-                        <TextBlock Name="excluder_level_home" Text="xxx" FontSize="20" FontWeight="Bold" HorizontalAlignment="Left" Margin="180,0,0,0"/>
-                        <TextBlock Text="%" FontSize="20" FontWeight="Bold" HorizontalAlignment="Left"/>
+                        <TextBlock Text="level." FontSize="20" FontWeight="Bold" HorizontalAlignment="Left" Margin="170,0,0,0"/>
+                        <TextBlock Name="excluder_level_home" Text="x" FontSize="20" FontWeight="Bold" HorizontalAlignment="Left"/>
                     </StackPanel>
                     <ProgressBar x:Name="excluder_level_bar" Value="0" Height="30" Width="330"/>
                     <StackPanel Orientation="Horizontal" Margin="0,10,0,0">

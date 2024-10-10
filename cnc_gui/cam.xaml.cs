@@ -1,6 +1,7 @@
 ﻿using LiveCharts;
 using LiveCharts.Wpf;
 using System;
+using System.IO;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Threading.Tasks;
@@ -9,6 +10,7 @@ using System.Windows.Controls;
 using static Focas;
 using System.Windows.Threading;
 using System.Configuration;
+using System.Windows.Media.Imaging;
 
 namespace cnc_gui
 {
@@ -76,18 +78,82 @@ namespace cnc_gui
             timer.Start();
             Task.Run(UpdateChart);
         }
+        public void LoadImage(string filePath, Image imageControl)
+        {
+            try
+            {
+                // 確認圖片檔案是否存在
+                if (File.Exists(filePath))
+                {
+                    // 建立 BitmapImage 物件
+                    BitmapImage bitmap = new BitmapImage();
+
+                    // 開始初始化
+                    bitmap.BeginInit();
+
+                    // 設定圖片來源
+                    bitmap.UriSource = new Uri(filePath, UriKind.Absolute);
+
+                    // 防止圖片被鎖定，允許快取選項
+                    bitmap.CacheOption = BitmapCacheOption.OnLoad;
+
+                    // 結束初始化
+                    bitmap.EndInit();
+
+                    // 將圖片設定到指定的 Image 控制項
+                    imageControl.Source = bitmap;
+                }
+                else
+                {
+                    // 如果圖片不存在，顯示預設圖片
+                    imageControl.Source = new BitmapImage(new Uri("icon/no_img.png", UriKind.Relative));
+                    Console.WriteLine($"圖片不存在：{filePath}");
+                }
+            }
+            catch (Exception ex)
+            {
+                // 處理錯誤並顯示預設圖片
+                imageControl.Source = new BitmapImage(new Uri("icon/no_img.png", UriKind.Relative));
+                Console.WriteLine($"錯誤訊息：{ex.Message}");
+            }
+        }
 
         // 此方法用於載入設定並更新 UI
         private void Timer_Tick(object sender, EventArgs e)
         {
             settingsPage.LoadConfig(); // 重新載入配置
             UpdateProgressBars();      // 更新進度條
+            LoadImage(@"D:\code\cnc_gui_s\cnc_gui\image\image_home.png", source_img_cam);
+            LoadImage(@"D:\code\cnc_gui_s\cnc_gui\image\image_home.png", roi_1_img);
+            LoadImage(@"D:\code\cnc_gui_s\cnc_gui\image\image_home.png", roi_2_img);
         }
 
         private void UpdateProgressBars()
         {
-            flusher_level_bar.Value = setting.flusher_level_bar;
             flusher_level_cam.Text = setting.flusher_level_bar.ToString();
+            switch (setting.flusher_level_bar)
+            {
+                case 1:
+                    flusher_level_bar.Value = double.Parse(setting.flusherLevels[0]);
+                    flusher_level_time.Text = setting.flusher_time[0];
+                    break;
+                case 2:
+                    flusher_level_bar.Value = double.Parse(setting.flusherLevels[1]);
+                    flusher_level_time.Text = setting.flusher_time[1];
+                    break;
+                case 3:
+                    flusher_level_bar.Value = double.Parse(setting.flusherLevels[2]);
+                    flusher_level_time.Text = setting.flusher_time[2];
+                    break;
+                case 4:
+                    flusher_level_bar.Value = double.Parse(setting.flusherLevels[3]);
+                    flusher_level_time.Text = setting.flusher_time[3];
+                    break;
+                case 5:
+                    flusher_level_bar.Value = setting.Excluder_level_bar * 20;
+                    flusher_level_time.Text = setting.flusher_time[4];
+                    break;
+            }
 
         }
 

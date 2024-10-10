@@ -118,8 +118,30 @@ namespace cnc_gui
 
         private void UpdateProgressBars()
         {
-            excluder_level_bar.Value = setting.Excluder_level_bar;
             excluder_level_clear.Text = setting.Excluder_level_bar.ToString();
+            switch (setting.Excluder_level_bar)
+            {
+                case 1:
+                    excluder_level_bar.Value = double.Parse(setting.excluderLevels[0]);
+                    excluder_level_time.Text = setting.excluder_time[0];
+                    break;
+                case 2:
+                    excluder_level_bar.Value = double.Parse(setting.excluderLevels[1]);
+                    excluder_level_time.Text = setting.excluder_time[1];
+                    break;
+                case 3:
+                    excluder_level_bar.Value = double.Parse(setting.excluderLevels[2]);
+                    excluder_level_time.Text = setting.excluder_time[2];
+                    break;
+                case 4:
+                    excluder_level_bar.Value = double.Parse(setting.excluderLevels[3]);
+                    excluder_level_time.Text = setting.excluder_time[3];
+                    break;
+                case 5:
+                    excluder_level_bar.Value = setting.Excluder_level_bar * 20;
+                    excluder_level_time.Text = setting.excluder_time[4];
+                    break;
+            }
 
         }
 
