@@ -1,0 +1,276 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "E:\\\u5C08\u984Cppt\u5408\u8F2F\\\u5C08\u984C\\cnc_gui_master\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{24E4B1CD-CDDC-48C3-A3B4-D408C6803112}|cnc_gui\\cnc_gui.csproj|E:\\\u5C08\u984Cppt\u5408\u8F2F\\\u5C08\u984C\\cnc_gui_master\\cnc_gui\\mvvm\\viewmodel\\camviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{24E4B1CD-CDDC-48C3-A3B4-D408C6803112}|cnc_gui\\cnc_gui.csproj|solutionrelative:cnc_gui\\mvvm\\viewmodel\\camviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{24E4B1CD-CDDC-48C3-A3B4-D408C6803112}|cnc_gui\\cnc_gui.csproj|E:\\\u5C08\u984Cppt\u5408\u8F2F\\\u5C08\u984C\\cnc_gui_master\\cnc_gui\\mvvm\\model\\logic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{24E4B1CD-CDDC-48C3-A3B4-D408C6803112}|cnc_gui\\cnc_gui.csproj|solutionrelative:cnc_gui\\mvvm\\model\\logic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{24E4B1CD-CDDC-48C3-A3B4-D408C6803112}|cnc_gui\\cnc_gui.csproj|e:\\\u5C08\u984Cppt\u5408\u8F2F\\\u5C08\u984C\\cnc_gui_master\\cnc_gui\\mvvm\\viewmodel\\homeviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{24E4B1CD-CDDC-48C3-A3B4-D408C6803112}|cnc_gui\\cnc_gui.csproj|solutionrelative:cnc_gui\\mvvm\\viewmodel\\homeviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{24E4B1CD-CDDC-48C3-A3B4-D408C6803112}|cnc_gui\\cnc_gui.csproj|E:\\\u5C08\u984Cppt\u5408\u8F2F\\\u5C08\u984C\\cnc_gui_master\\cnc_gui\\mvvm\\view\\home.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{24E4B1CD-CDDC-48C3-A3B4-D408C6803112}|cnc_gui\\cnc_gui.csproj|solutionrelative:cnc_gui\\mvvm\\view\\home.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{24E4B1CD-CDDC-48C3-A3B4-D408C6803112}|cnc_gui\\cnc_gui.csproj|E:\\\u5C08\u984Cppt\u5408\u8F2F\\\u5C08\u984C\\cnc_gui_master\\cnc_gui\\mvvm\\view\\home.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{24E4B1CD-CDDC-48C3-A3B4-D408C6803112}|cnc_gui\\cnc_gui.csproj|solutionrelative:cnc_gui\\mvvm\\view\\home.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{24E4B1CD-CDDC-48C3-A3B4-D408C6803112}|cnc_gui\\cnc_gui.csproj|E:\\\u5C08\u984Cppt\u5408\u8F2F\\\u5C08\u984C\\cnc_gui_master\\cnc_gui\\mvvm\\model\\dbcontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{24E4B1CD-CDDC-48C3-A3B4-D408C6803112}|cnc_gui\\cnc_gui.csproj|solutionrelative:cnc_gui\\mvvm\\model\\dbcontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{24E4B1CD-CDDC-48C3-A3B4-D408C6803112}|cnc_gui\\cnc_gui.csproj|E:\\\u5C08\u984Cppt\u5408\u8F2F\\\u5C08\u984C\\cnc_gui_master\\cnc_gui\\mvvm\\viewmodel\\clearviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{24E4B1CD-CDDC-48C3-A3B4-D408C6803112}|cnc_gui\\cnc_gui.csproj|solutionrelative:cnc_gui\\mvvm\\viewmodel\\clearviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{24E4B1CD-CDDC-48C3-A3B4-D408C6803112}|cnc_gui\\cnc_gui.csproj|E:\\\u5C08\u984Cppt\u5408\u8F2F\\\u5C08\u984C\\cnc_gui_master\\cnc_gui\\mvvm\\view\\clear.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{24E4B1CD-CDDC-48C3-A3B4-D408C6803112}|cnc_gui\\cnc_gui.csproj|solutionrelative:cnc_gui\\mvvm\\view\\clear.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{24E4B1CD-CDDC-48C3-A3B4-D408C6803112}|cnc_gui\\cnc_gui.csproj|E:\\\u5C08\u984Cppt\u5408\u8F2F\\\u5C08\u984C\\cnc_gui_master\\cnc_gui\\mvvm\\viewmodel\\energyviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{24E4B1CD-CDDC-48C3-A3B4-D408C6803112}|cnc_gui\\cnc_gui.csproj|solutionrelative:cnc_gui\\mvvm\\viewmodel\\energyviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{24E4B1CD-CDDC-48C3-A3B4-D408C6803112}|cnc_gui\\cnc_gui.csproj|E:\\\u5C08\u984Cppt\u5408\u8F2F\\\u5C08\u984C\\cnc_gui_master\\cnc_gui\\mvvm\\viewmodel\\settingviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{24E4B1CD-CDDC-48C3-A3B4-D408C6803112}|cnc_gui\\cnc_gui.csproj|solutionrelative:cnc_gui\\mvvm\\viewmodel\\settingviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{24E4B1CD-CDDC-48C3-A3B4-D408C6803112}|cnc_gui\\cnc_gui.csproj|E:\\\u5C08\u984Cppt\u5408\u8F2F\\\u5C08\u984C\\cnc_gui_master\\cnc_gui\\mvvm\\view\\setting.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{24E4B1CD-CDDC-48C3-A3B4-D408C6803112}|cnc_gui\\cnc_gui.csproj|solutionrelative:cnc_gui\\mvvm\\view\\setting.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{24E4B1CD-CDDC-48C3-A3B4-D408C6803112}|cnc_gui\\cnc_gui.csproj|E:\\\u5C08\u984Cppt\u5408\u8F2F\\\u5C08\u984C\\cnc_gui_master\\cnc_gui\\mvvm\\view\\cam.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{24E4B1CD-CDDC-48C3-A3B4-D408C6803112}|cnc_gui\\cnc_gui.csproj|solutionrelative:cnc_gui\\mvvm\\view\\cam.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{24E4B1CD-CDDC-48C3-A3B4-D408C6803112}|cnc_gui\\cnc_gui.csproj|E:\\\u5C08\u984Cppt\u5408\u8F2F\\\u5C08\u984C\\cnc_gui_master\\cnc_gui\\mvvm\\view\\menu_bar.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{24E4B1CD-CDDC-48C3-A3B4-D408C6803112}|cnc_gui\\cnc_gui.csproj|solutionrelative:cnc_gui\\mvvm\\view\\menu_bar.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{24E4B1CD-CDDC-48C3-A3B4-D408C6803112}|cnc_gui\\cnc_gui.csproj|E:\\\u5C08\u984Cppt\u5408\u8F2F\\\u5C08\u984C\\cnc_gui_master\\cnc_gui\\mvvm\\view\\energy.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{24E4B1CD-CDDC-48C3-A3B4-D408C6803112}|cnc_gui\\cnc_gui.csproj|solutionrelative:cnc_gui\\mvvm\\view\\energy.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{24E4B1CD-CDDC-48C3-A3B4-D408C6803112}|cnc_gui\\cnc_gui.csproj|E:\\\u5C08\u984Cppt\u5408\u8F2F\\\u5C08\u984C\\cnc_gui_master\\cnc_gui\\mvvm\\view\\menu_bar.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{24E4B1CD-CDDC-48C3-A3B4-D408C6803112}|cnc_gui\\cnc_gui.csproj|solutionrelative:cnc_gui\\mvvm\\view\\menu_bar.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{24E4B1CD-CDDC-48C3-A3B4-D408C6803112}|cnc_gui\\cnc_gui.csproj|E:\\\u5C08\u984Cppt\u5408\u8F2F\\\u5C08\u984C\\cnc_gui_master\\cnc_gui\\mvvm\\view\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{24E4B1CD-CDDC-48C3-A3B4-D408C6803112}|cnc_gui\\cnc_gui.csproj|solutionrelative:cnc_gui\\mvvm\\view\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 13,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "clearViewModel.cs",
+              "DocumentMoniker": "E:\\\u5C08\u984Cppt\u5408\u8F2F\\\u5C08\u984C\\cnc_gui_master\\cnc_gui\\mvvm\\Viewmodel\\clearViewModel.cs",
+              "RelativeDocumentMoniker": "cnc_gui\\mvvm\\Viewmodel\\clearViewModel.cs",
+              "ToolTip": "E:\\\u5C08\u984Cppt\u5408\u8F2F\\\u5C08\u984C\\cnc_gui_master\\cnc_gui\\mvvm\\Viewmodel\\clearViewModel.cs",
+              "RelativeToolTip": "cnc_gui\\mvvm\\Viewmodel\\clearViewModel.cs",
+              "ViewState": "AgIAAFAAAAAAAAAAAAAnwF0AAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-11T14:28:01.473Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "energyViewModel.cs",
+              "DocumentMoniker": "E:\\\u5C08\u984Cppt\u5408\u8F2F\\\u5C08\u984C\\cnc_gui_master\\cnc_gui\\mvvm\\Viewmodel\\energyViewModel.cs",
+              "RelativeDocumentMoniker": "cnc_gui\\mvvm\\Viewmodel\\energyViewModel.cs",
+              "ToolTip": "E:\\\u5C08\u984Cppt\u5408\u8F2F\\\u5C08\u984C\\cnc_gui_master\\cnc_gui\\mvvm\\Viewmodel\\energyViewModel.cs",
+              "RelativeToolTip": "cnc_gui\\mvvm\\Viewmodel\\energyViewModel.cs",
+              "ViewState": "AgIAACEAAAAAAAAAAAAAADgAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-11T14:42:12.999Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "clear.xaml",
+              "DocumentMoniker": "E:\\\u5C08\u984Cppt\u5408\u8F2F\\\u5C08\u984C\\cnc_gui_master\\cnc_gui\\mvvm\\View\\clear.xaml",
+              "RelativeDocumentMoniker": "cnc_gui\\mvvm\\View\\clear.xaml",
+              "ToolTip": "E:\\\u5C08\u984Cppt\u5408\u8F2F\\\u5C08\u984C\\cnc_gui_master\\cnc_gui\\mvvm\\View\\clear.xaml",
+              "RelativeToolTip": "cnc_gui\\mvvm\\View\\clear.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-06-11T14:26:03.396Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "cam.xaml",
+              "DocumentMoniker": "E:\\\u5C08\u984Cppt\u5408\u8F2F\\\u5C08\u984C\\cnc_gui_master\\cnc_gui\\mvvm\\View\\cam.xaml",
+              "RelativeDocumentMoniker": "cnc_gui\\mvvm\\View\\cam.xaml",
+              "ToolTip": "E:\\\u5C08\u984Cppt\u5408\u8F2F\\\u5C08\u984C\\cnc_gui_master\\cnc_gui\\mvvm\\View\\cam.xaml",
+              "RelativeToolTip": "cnc_gui\\mvvm\\View\\cam.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-06-11T13:12:01.008Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "energy.xaml",
+              "DocumentMoniker": "E:\\\u5C08\u984Cppt\u5408\u8F2F\\\u5C08\u984C\\cnc_gui_master\\cnc_gui\\mvvm\\View\\energy.xaml",
+              "RelativeDocumentMoniker": "cnc_gui\\mvvm\\View\\energy.xaml",
+              "ToolTip": "E:\\\u5C08\u984Cppt\u5408\u8F2F\\\u5C08\u984C\\cnc_gui_master\\cnc_gui\\mvvm\\View\\energy.xaml",
+              "RelativeToolTip": "cnc_gui\\mvvm\\View\\energy.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-06-11T09:17:59.003Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "home.xaml.cs",
+              "DocumentMoniker": "E:\\\u5C08\u984Cppt\u5408\u8F2F\\\u5C08\u984C\\cnc_gui_master\\cnc_gui\\mvvm\\View\\home.xaml.cs",
+              "RelativeDocumentMoniker": "cnc_gui\\mvvm\\View\\home.xaml.cs",
+              "ToolTip": "E:\\\u5C08\u984Cppt\u5408\u8F2F\\\u5C08\u984C\\cnc_gui_master\\cnc_gui\\mvvm\\View\\home.xaml.cs",
+              "RelativeToolTip": "cnc_gui\\mvvm\\View\\home.xaml.cs",
+              "ViewState": "AgIAAD8AAAAAAAAAAAAAAA0AAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-11T08:59:30.619Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "App.xaml",
+              "DocumentMoniker": "E:\\\u5C08\u984Cppt\u5408\u8F2F\\\u5C08\u984C\\cnc_gui_master\\cnc_gui\\mvvm\\View\\App.xaml",
+              "RelativeDocumentMoniker": "cnc_gui\\mvvm\\View\\App.xaml",
+              "ToolTip": "E:\\\u5C08\u984Cppt\u5408\u8F2F\\\u5C08\u984C\\cnc_gui_master\\cnc_gui\\mvvm\\View\\App.xaml",
+              "RelativeToolTip": "cnc_gui\\mvvm\\View\\App.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-04-02T18:20:33.695Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "settingViewModel.cs",
+              "DocumentMoniker": "E:\\\u5C08\u984Cppt\u5408\u8F2F\\\u5C08\u984C\\cnc_gui_master\\cnc_gui\\mvvm\\Viewmodel\\settingViewModel.cs",
+              "RelativeDocumentMoniker": "cnc_gui\\mvvm\\Viewmodel\\settingViewModel.cs",
+              "ToolTip": "E:\\\u5C08\u984Cppt\u5408\u8F2F\\\u5C08\u984C\\cnc_gui_master\\cnc_gui\\mvvm\\Viewmodel\\settingViewModel.cs",
+              "RelativeToolTip": "cnc_gui\\mvvm\\Viewmodel\\settingViewModel.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAADwvyUAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-02T17:10:09.512Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "setting.xaml",
+              "DocumentMoniker": "E:\\\u5C08\u984Cppt\u5408\u8F2F\\\u5C08\u984C\\cnc_gui_master\\cnc_gui\\mvvm\\View\\setting.xaml",
+              "RelativeDocumentMoniker": "cnc_gui\\mvvm\\View\\setting.xaml",
+              "ToolTip": "E:\\\u5C08\u984Cppt\u5408\u8F2F\\\u5C08\u984C\\cnc_gui_master\\cnc_gui\\mvvm\\View\\setting.xaml",
+              "RelativeToolTip": "cnc_gui\\mvvm\\View\\setting.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-04-02T17:10:05.359Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "menu_bar.xaml",
+              "DocumentMoniker": "E:\\\u5C08\u984Cppt\u5408\u8F2F\\\u5C08\u984C\\cnc_gui_master\\cnc_gui\\mvvm\\View\\menu_bar.xaml",
+              "RelativeDocumentMoniker": "cnc_gui\\mvvm\\View\\menu_bar.xaml",
+              "ToolTip": "E:\\\u5C08\u984Cppt\u5408\u8F2F\\\u5C08\u984C\\cnc_gui_master\\cnc_gui\\mvvm\\View\\menu_bar.xaml",
+              "RelativeToolTip": "cnc_gui\\mvvm\\View\\menu_bar.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-04-02T10:21:55.844Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "menu_bar.xaml.cs",
+              "DocumentMoniker": "E:\\\u5C08\u984Cppt\u5408\u8F2F\\\u5C08\u984C\\cnc_gui_master\\cnc_gui\\mvvm\\View\\menu_bar.xaml.cs",
+              "RelativeDocumentMoniker": "cnc_gui\\mvvm\\View\\menu_bar.xaml.cs",
+              "ToolTip": "E:\\\u5C08\u984Cppt\u5408\u8F2F\\\u5C08\u984C\\cnc_gui_master\\cnc_gui\\mvvm\\View\\menu_bar.xaml.cs",
+              "RelativeToolTip": "cnc_gui\\mvvm\\View\\menu_bar.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-02T10:21:52.526Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "home.xaml",
+              "DocumentMoniker": "E:\\\u5C08\u984Cppt\u5408\u8F2F\\\u5C08\u984C\\cnc_gui_master\\cnc_gui\\mvvm\\View\\home.xaml",
+              "RelativeDocumentMoniker": "cnc_gui\\mvvm\\View\\home.xaml",
+              "ToolTip": "E:\\\u5C08\u984Cppt\u5408\u8F2F\\\u5C08\u984C\\cnc_gui_master\\cnc_gui\\mvvm\\View\\home.xaml",
+              "RelativeToolTip": "cnc_gui\\mvvm\\View\\home.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-04-01T14:18:07.107Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "logic.cs",
+              "DocumentMoniker": "E:\\\u5C08\u984Cppt\u5408\u8F2F\\\u5C08\u984C\\cnc_gui_master\\cnc_gui\\mvvm\\Model\\logic.cs",
+              "RelativeDocumentMoniker": "cnc_gui\\mvvm\\Model\\logic.cs",
+              "ToolTip": "E:\\\u5C08\u984Cppt\u5408\u8F2F\\\u5C08\u984C\\cnc_gui_master\\cnc_gui\\mvvm\\Model\\logic.cs*",
+              "RelativeToolTip": "cnc_gui\\mvvm\\Model\\logic.cs*",
+              "ViewState": "AgIAAGMAAAAAAAAAAAAAAGkAAABGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-01T14:22:34.11Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "camViewModel.cs",
+              "DocumentMoniker": "E:\\\u5C08\u984Cppt\u5408\u8F2F\\\u5C08\u984C\\cnc_gui_master\\cnc_gui\\mvvm\\Viewmodel\\camViewModel.cs",
+              "RelativeDocumentMoniker": "cnc_gui\\mvvm\\Viewmodel\\camViewModel.cs",
+              "ToolTip": "E:\\\u5C08\u984Cppt\u5408\u8F2F\\\u5C08\u984C\\cnc_gui_master\\cnc_gui\\mvvm\\Viewmodel\\camViewModel.cs*",
+              "RelativeToolTip": "cnc_gui\\mvvm\\Viewmodel\\camViewModel.cs*",
+              "ViewState": "AgIAAGMAAAAAAAAAAADwv3sAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-01T14:22:30.394Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "homeViewModel.cs",
+              "DocumentMoniker": "E:\\\u5C08\u984Cppt\u5408\u8F2F\\\u5C08\u984C\\cnc_gui_master\\cnc_gui\\mvvm\\Viewmodel\\homeViewModel.cs",
+              "RelativeDocumentMoniker": "cnc_gui\\mvvm\\Viewmodel\\homeViewModel.cs",
+              "ToolTip": "E:\\\u5C08\u984Cppt\u5408\u8F2F\\\u5C08\u984C\\cnc_gui_master\\cnc_gui\\mvvm\\Viewmodel\\homeViewModel.cs*",
+              "RelativeToolTip": "cnc_gui\\mvvm\\Viewmodel\\homeViewModel.cs*",
+              "ViewState": "AgIAAEUAAAAAAAAAAADwv1QAAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-01T14:20:52.366Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "dbcontrol.cs",
+              "DocumentMoniker": "E:\\\u5C08\u984Cppt\u5408\u8F2F\\\u5C08\u984C\\cnc_gui_master\\cnc_gui\\mvvm\\Model\\dbcontrol.cs",
+              "RelativeDocumentMoniker": "cnc_gui\\mvvm\\Model\\dbcontrol.cs",
+              "ToolTip": "E:\\\u5C08\u984Cppt\u5408\u8F2F\\\u5C08\u984C\\cnc_gui_master\\cnc_gui\\mvvm\\Model\\dbcontrol.cs",
+              "RelativeToolTip": "cnc_gui\\mvvm\\Model\\dbcontrol.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADsAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-01T14:17:55.951Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

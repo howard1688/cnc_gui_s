@@ -1,0 +1,123 @@
+create database `cnc_db`;
+show databases;
+use `cnc_db`;
+
+create table `ip_port`(
+   `Cncip` varchar(50),
+       `Cncport` varchar(10)
+);
+
+create table `Plc_control`(
+`id` int primary key,
+`Address_type` varchar(50),
+`Handl` int,
+`Address` int,
+`Decimal_num` int
+);
+
+create  table `Flusher_time_setting`(
+`Image_processing_time` int,
+`Total_flusher_time` int,
+`Delay_time` int
+);
+
+create  table `Level_set`(
+ `id` int primary key,
+ `level_type` VARCHAR(50),
+ `Level_1` int,
+ `Level_2` int,
+ `Level_3` int,
+ `Level_4` int
+);
+
+create  table `Level_set_to_string`(
+`id` int primary key,
+`level_type_str` VARCHAR(50),
+`Level_1_to_str` varchar(20),
+`Level_2_to_str` varchar(20),
+`Level_3_to_str` varchar(20),
+`Level_4_to_str` varchar(20),
+`Level_5_to_str` varchar(20)
+);
+
+
+create  table `Level_set_time`(
+ `id` int primary key,
+ `level_type` VARCHAR(50),
+ `Level_1_time` int,
+ `Level_2_time` int,
+ `Level_3_time` int,
+ `Level_4_time` int,
+ `Level_5_time` int
+);
+
+create  table `Level_result`(
+`flusher_level_result` int,
+`excluder_level_result` int,
+`flusher_platform_result` int,
+`flusher_rotary_platform_result` int
+
+); 
+
+create  table Setting(
+        Excluder_Period int
+); 
+
+create  table `flusher_excluder_onoff`(
+`flusher_state` int,
+`excluder_state` int
+); 
+
+create table `flusher_history`(
+`id` int primary key AUTO_INCREMENT,
+`open_timestamp` time,
+`result` int,
+`threshold` int,
+`flusher_energy_data` varchar(20),
+`excluder_energy_data` varchar(20),
+`total_energy_data` varchar(20),
+`total_energy_sum` varchar(20),
+`total_kwh` varchar(20)
+);
+
+
+
+select * from `ip_port`;
+insert into `ip_port` values('192.168.0.200','8193');
+delete from cnc_db.ip_port ;
+
+select * from `Plc_control`;
+insert  into  `Plc_control` values('1','Flusher_address','5','7000','10');
+insert  into  `Plc_control` values('2','Excluder_address','5','7000','10');
+DELETE FROM cnc_db.Plc_control;
+select * from `Flusher_time_setting`;
+insert  into  `Flusher_time_setting` values('5','100','10');
+
+select * from `Level_set`;
+insert  into `Level_set` values('1','Flusher_level','20','40','60','80');
+insert  into `Level_set` values('2','Excluder_level','20','40','60','80');
+
+select * from `Level_set_to_string`;
+insert  into `Level_set_to_string` values('1','Flusher_level_to_str','0%~20%','21%~40%','41%~60%','61%~80%','81%~100%');
+insert  into `Level_set_to_string` values('2','Excluder_level_to_str','0%~20%','21%~40%','41%~60%','61%~80%','81%~100%');
+
+select * from `Level_set_time`;
+insert  into `Level_set_time` values('1','Flusher_level_time','0','2','3','5','6');
+insert  into `Level_set_time` values('2','Excluder_level_time','10','30','50','70','100');
+
+select * from `Level_result`;
+DELETE FROM cnc_db.level_result
+WHERE flusher_level_result=2 AND excluder_level_result=4;
+insert into `Level_result` values('5','3','0','0')
+
+select * from Setting;
+insert into Setting values('5');
+
+select * from flusher_excluder_onoff;
+insert into flusher_excluder_onoff values('0','0');
+
+select * from flusher_history;
+insert into flusher_history(open_timestamp,result,threshold) values('114514','1','0','0','0','0','0','0','0');
+insert into flusher_history(open_timestamp,result,threshold) values('114514','2','0');
+insert into flusher_history values('1','114514','0','0','0','0','0','0','0');    用這個
+DELETE FROM cnc_db.flusher_history ;

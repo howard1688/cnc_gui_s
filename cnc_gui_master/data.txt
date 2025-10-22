@@ -1,0 +1,6 @@
+1.
+mysql:9.1.0 zip https://downloads.mysql.com/archives/community/
+
+安裝教學:https://blog.csdn.net/qq_42078934/article/details/131839111
+帳號:root 
+passwd:ncut2024
